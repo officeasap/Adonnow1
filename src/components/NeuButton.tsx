@@ -54,9 +54,12 @@ export const NeuButton = forwardRef<HTMLButtonElement, NeuButtonProps>(
         onClick={onClick}
         className={cn(
           "relative inline-flex items-center justify-center gap-3 font-body font-medium",
-          "text-text-primary rounded-lg cursor-pointer touch-target",
+          "rounded-[18px] cursor-pointer touch-target",
           "transition-colors duration-200",
           "disabled:opacity-50 disabled:cursor-not-allowed",
+          variant === "hero" || variant === "floating" 
+            ? "gold-text-subtle" 
+            : "text-text-primary",
           variantStyles[variant],
           sizeStyles[size],
           className

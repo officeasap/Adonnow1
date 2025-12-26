@@ -109,8 +109,8 @@ const Contact = () => {
                   transition={{ delay: 0.1 * index }}
                 >
                   <DepthContainer tier={2} className="p-5 flex items-center gap-4 hover:scale-[1.02] transition-transform">
-                    <div className="neu-raised w-12 h-12 rounded-lg flex items-center justify-center">
-                      <Icon className="text-text-highlight" size={22} />
+                    <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center">
+                      <Icon className="text-gold-light" size={22} />
                     </div>
                     <div>
                       <span className="block text-text-muted font-body text-xs uppercase tracking-wider haptic-text-1">
@@ -156,9 +156,9 @@ const Contact = () => {
                 {[1, 2, 3].map((s) => (
                   <div key={s} className="flex items-center flex-1">
                     <motion.div
-                      className={`w-10 h-10 rounded-lg flex items-center justify-center font-heading text-lg ${
+                      className={`w-10 h-10 rounded-[18px] flex items-center justify-center font-heading text-lg ${
                         s <= step
-                          ? "neu-hero text-text-highlight"
+                          ? "neu-hero gold-text-subtle"
                           : "neu-sunken text-text-muted"
                       }`}
                       animate={s === step ? { scale: [1, 1.05, 1] } : {}}
@@ -197,7 +197,7 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full neu-sunken px-4 py-3 rounded-lg bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
+                        className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
                         placeholder="Your full name"
                       />
                     </div>
@@ -210,7 +210,7 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full neu-sunken px-4 py-3 rounded-lg bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
+                        className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
                         placeholder="Company name"
                       />
                     </div>
@@ -224,7 +224,7 @@ const Contact = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full neu-sunken px-4 py-3 rounded-lg bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
+                          className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -237,7 +237,7 @@ const Contact = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full neu-sunken px-4 py-3 rounded-lg bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
+                          className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
                           placeholder="+254..."
                         />
                       </div>
@@ -265,7 +265,7 @@ const Contact = () => {
                         name="mineral"
                         value={formData.mineral}
                         onChange={handleInputChange}
-                        className="w-full neu-sunken px-4 py-3 rounded-lg bg-depth-1 text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
+                        className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-depth-1 text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5"
                       >
                         <option value="">Choose a mineral...</option>
                         <option value="coltan">Coltan (Tantalum Ore)</option>
@@ -275,15 +275,15 @@ const Contact = () => {
                       </select>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
-                      {["Coltan", "Copper", "Tanzanite", "Other"].map((m) => (
-                        <motion.button
-                          key={m}
-                          type="button"
-                          className={`p-4 rounded-lg text-left transition-all ${
-                            formData.mineral.toLowerCase() === m.toLowerCase()
-                              ? "neu-sunken text-text-highlight"
-                              : "neu-raised text-text-secondary hover:text-text-primary"
-                          }`}
+                        {["Coltan", "Copper", "Tanzanite", "Other"].map((m) => (
+                          <motion.button
+                            key={m}
+                            type="button"
+                            className={`p-4 rounded-[18px] text-left transition-all ${
+                              formData.mineral.toLowerCase() === m.toLowerCase()
+                                ? "neu-sunken gold-text-subtle"
+                                : "neu-raised text-text-secondary hover:text-text-primary"
+                            }`}
                           onClick={() =>
                             setFormData((prev) => ({
                               ...prev,
@@ -319,7 +319,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={5}
-                      className="w-full neu-sunken px-4 py-3 rounded-lg bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5 resize-none"
+                      className="w-full neu-sunken px-4 py-3 rounded-[18px] bg-transparent text-text-primary font-body focus:outline-none focus:ring-1 focus:ring-depth-5 resize-none"
                       placeholder="Describe your trading requirements, quantities, timelines..."
                     />
                   </div>

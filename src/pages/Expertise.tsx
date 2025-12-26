@@ -72,8 +72,8 @@ const Expertise = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <DepthContainer tier={2} className="p-6 md:p-8 h-full">
-                    <div className="neu-raised w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-                      <Icon className="text-text-highlight" size={28} />
+                    <div className="neu-raised w-14 h-14 rounded-[18px] flex items-center justify-center mb-6">
+                      <Icon className="text-gold-light" size={28} />
                     </div>
                     <h3 className="font-heading text-xl text-text-highlight mb-3 haptic-text-2">
                       {area.title}
@@ -108,8 +108,8 @@ const Expertise = () => {
         >
           <DepthContainer tier={4} className="p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="neu-raised w-14 h-14 rounded-lg flex items-center justify-center">
-                <Shield className="text-text-highlight" size={28} />
+              <div className="neu-raised w-14 h-14 rounded-[18px] flex items-center justify-center">
+                <Shield className="text-gold-light" size={28} />
               </div>
               <div>
                 <h3 className="font-heading text-lg text-text-highlight haptic-text-2">

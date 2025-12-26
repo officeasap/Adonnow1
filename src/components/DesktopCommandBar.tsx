@@ -34,9 +34,9 @@ export const DesktopCommandBar = () => {
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `px-4 py-2 rounded-lg font-body text-sm transition-all duration-200 haptic-text-1 ${
+              `px-4 py-2 rounded-[18px] font-body text-sm transition-all duration-200 haptic-text-1 ${
                 isActive
-                  ? "text-text-highlight neu-sunken"
+                  ? "gold-text-subtle neu-sunken"
                   : "text-text-secondary hover:text-text-primary hover:bg-depth-2/50"
               }`
             }

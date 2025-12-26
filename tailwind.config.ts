@@ -39,6 +39,12 @@ export default {
         "text-muted": "hsl(var(--text-muted))",
         "text-highlight": "hsl(var(--text-highlight))",
         
+        // Gold accent for typography only
+        "gold-base": "hsl(var(--gold-base))",
+        "gold-light": "hsl(var(--gold-light))",
+        "gold-dark": "hsl(var(--gold-dark))",
+        "text-highlight": "hsl(var(--text-highlight))",
+        
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

@@ -78,8 +78,8 @@ const Services = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <DepthContainer tier={2} className="p-6 h-full flex flex-col">
-                    <div className="neu-raised w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                      <Icon className="text-text-highlight" size={24} />
+                    <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center mb-4">
+                      <Icon className="text-gold-light" size={24} />
                     </div>
                     <h3 className="font-heading text-lg text-text-highlight mb-2 haptic-text-2">
                       {service.title}

@@ -94,8 +94,8 @@ const OurVision = () => {
                 >
                   <DepthContainer tier={2} className="p-6 h-full">
                     <div className="flex gap-4">
-                      <div className="neu-raised w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Icon className="text-text-highlight" size={24} />
+                      <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center flex-shrink-0">
+                        <Icon className="text-gold-light" size={24} />
                       </div>
                       <div>
                         <h3 className="font-heading text-lg text-text-highlight mb-2 haptic-text-2">

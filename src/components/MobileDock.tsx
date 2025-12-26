@@ -35,8 +35,8 @@ export const MobileDock = () => {
               <motion.div
                 className={cn(
                   "flex flex-col items-center justify-center h-full gap-1",
-                  "text-text-secondary transition-colors touch-target",
-                  isActive && "text-text-highlight"
+                  "transition-colors touch-target",
+                  isActive ? "gold-text-subtle" : "text-text-secondary"
                 )}
                 whileTap={{
                   y: 2,
@@ -45,7 +45,7 @@ export const MobileDock = () => {
               >
                 <motion.div
                   className={cn(
-                    "p-2 rounded-lg transition-all duration-200",
+                    "p-2 rounded-[18px] transition-all duration-200",
                     isActive
                       ? "neu-sunken"
                       : "hover:bg-depth-3/30"

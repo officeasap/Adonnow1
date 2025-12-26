@@ -155,9 +155,9 @@ const Index = () => {
                   {minerals.map((mineral, index) => (
                     <motion.button
                       key={mineral.type}
-                      className={`flex-1 py-3 rounded-lg text-xs font-body uppercase tracking-wider transition-all ${
+                      className={`flex-1 py-3 rounded-[18px] text-xs font-body uppercase tracking-wider transition-all ${
                         index === currentMineral
-                          ? "neu-sunken text-text-highlight"
+                          ? "neu-sunken gold-text-subtle"
                           : "neu-raised text-text-secondary hover:text-text-primary"
                       }`}
                       onClick={() => setCurrentMineral(index)}
@@ -203,7 +203,7 @@ const Index = () => {
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
                   <DepthContainer tier={2} className="p-6 md:p-8 h-full">
-                    <div className="neu-raised w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                    <div className="neu-raised w-14 h-14 rounded-[18px] flex items-center justify-center mb-6">
                       <Icon className="text-text-highlight" size={28} />
                     </div>
                     <h3 className="font-heading text-xl text-text-highlight mb-3 haptic-text-2">

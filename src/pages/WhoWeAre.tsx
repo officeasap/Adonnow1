@@ -102,7 +102,7 @@ const WhoWeAre = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <DepthContainer tier={1} className="p-4 flex items-center gap-4">
-                  <span className="font-heading text-xl text-text-highlight haptic-text-2">
+                  <span className="font-heading text-xl gold-text haptic-text-2">
                     {item.year}
                   </span>
                   <div className="h-px flex-1 bg-depth-3" />

@@ -47,13 +47,25 @@
     --input: var(--depth-1);
     --ring: 0 0% 20%;
     
-    --radius: 12px;
+    --radius: 18px;
     
     /* Text colors */
     --text-primary: 0 0% 90%;
     --text-secondary: 0 0% 70%;
     --text-muted: 0 0% 50%;
     --text-highlight: 0 0% 95%;
+    
+    /* Gold haptic typography - metallic, embossed, raised */
+    --gold-hue: 43;
+    --gold-sat: 35%;
+    --gold-base: var(--gold-hue) var(--gold-sat) 55%;
+    --gold-light: var(--gold-hue) calc(var(--gold-sat) - 10%) 70%;
+    --gold-dark: var(--gold-hue) calc(var(--gold-sat) + 5%) 35%;
+    
+    /* Gold text relief shadows - embossed positive relief */
+    --gold-relief-1: 0.5px 0.5px 1px hsl(0 0% 0%), -0.5px -0.5px 1px hsl(var(--gold-light) / 0.4);
+    --gold-relief-2: 1px 1px 2px hsl(0 0% 0%), -1px -1px 2px hsl(var(--gold-light) / 0.5);
+    --gold-relief-3: 2px 2px 4px hsl(0 0% 0%), -2px -2px 4px hsl(var(--gold-light) / 0.6);
     
     /* Neumorphic shadows */
     --shadow-raised-light: -4px -4px 8px hsl(0 0% 12%);
@@ -74,6 +86,7 @@
     --gradient-tier-3: linear-gradient(145deg, hsl(0 0% 5%), hsl(0 0% 3%));
     --gradient-tier-4: linear-gradient(145deg, hsl(0 0% 15%), hsl(0 0% 8%));
     --gradient-logo: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 4%), hsl(0 0% 20%));
+    --gradient-gold: linear-gradient(180deg, hsl(var(--gold-light)), hsl(var(--gold-base)), hsl(var(--gold-dark)));
     
     /* Spacing */
     --thumb-target: 52px;
@@ -121,15 +134,28 @@
     font-family: 'Playfair Display', serif;
   }
   
+  /* Gold Haptic Typography - Embossed positive relief for headings */
   h1 {
-    text-shadow: var(--text-relief-3);
+    color: hsl(var(--gold-base));
+    text-shadow: var(--gold-relief-3);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 2px hsl(0 0% 0%)) drop-shadow(-1px -1px 1px hsl(var(--gold-light) / 0.5));
   }
   
   h2, h3 {
-    text-shadow: var(--text-relief-2);
+    color: hsl(var(--gold-base));
+    text-shadow: var(--gold-relief-2);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 1px hsl(0 0% 0%)) drop-shadow(-0.5px -0.5px 1px hsl(var(--gold-light) / 0.4));
   }
   
-  h4, h5, h6, p, span, a, button, label {
+  h4, h5, h6, p, span, a, label {
     text-shadow: var(--text-relief-1);
   }
 }
@@ -171,7 +197,7 @@
       var(--shadow-hero-dark),
       0 40px 80px rgba(0,0,0,0.5),
       inset 0 0 0 1px hsl(0 0% 16%);
-    border-radius: calc(var(--radius) * 1.5);
+    border-radius: var(--radius);
   }
   
   /* Haptic Text Classes */
@@ -185,6 +211,25 @@
   
   .haptic-text-3 {
     text-shadow: var(--text-relief-3);
+  }
+  
+  /* Gold haptic text - for nav labels and primary button text */
+  .gold-text {
+    color: hsl(var(--gold-base));
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(1px 1px 1px hsl(0 0% 0%)) drop-shadow(-0.5px -0.5px 1px hsl(var(--gold-light) / 0.4));
+  }
+  
+  .gold-text-subtle {
+    color: hsl(var(--gold-base));
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0.5px 0.5px 1px hsl(0 0% 0%));
   }
   
   /* Logo styling with flipped NN */

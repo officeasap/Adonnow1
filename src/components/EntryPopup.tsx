@@ -67,7 +67,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
       >
         {/* Close button */}
         <motion.button
-          className="absolute top-4 right-4 p-2 rounded-lg neu-raised text-text-secondary hover:text-text-primary transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-[18px] neu-raised text-text-secondary hover:text-text-primary transition-colors"
           onClick={handleClose}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

@@ -26,7 +26,7 @@ export const DepthContainer = forwardRef<HTMLDivElement, DepthContainerProps>(
       return (
         <motion.div
           ref={ref}
-          className={cn(tierStyles[tier], "rounded-lg", className)}
+          className={cn(tierStyles[tier], "rounded-[18px]", className)}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -40,7 +40,7 @@ export const DepthContainer = forwardRef<HTMLDivElement, DepthContainerProps>(
     return (
       <div
         ref={ref}
-        className={cn(tierStyles[tier], "rounded-lg", className)}
+        className={cn(tierStyles[tier], "rounded-[18px]", className)}
         onClick={onClick}
       >
         {children}

@@ -86,8 +86,8 @@ const Minerals = () => {
                         className="h-64 md:h-full min-h-[280px] rounded-none"
                       />
                       <div className="absolute top-4 left-4">
-                        <div className="neu-raised px-3 py-1.5 rounded-lg">
-                          <Icon size={18} className="text-text-highlight inline mr-2" />
+                        <div className="neu-raised px-3 py-1.5 rounded-[18px]">
+                          <Icon size={18} className="text-gold-light inline mr-2" />
                           <span className="text-text-secondary font-body text-xs uppercase tracking-wider haptic-text-1">
                             {mineral.tagline}
                           </span>

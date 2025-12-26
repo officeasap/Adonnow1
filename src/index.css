@@ -1,96 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ADONNOW TRADING TERMINAL - Design System
+   Haptic Neumorphic Mineral Trading Interface
+   All colors MUST be HSL - Charcoal gradient system only */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* 5-Tier Depth System */
+    --depth-void: 0 0% 3%;
+    --depth-1: 0 0% 5%;
+    --depth-2: 0 0% 8%;
+    --depth-3: 0 0% 12%;
+    --depth-4: 0 0% 15%;
+    --depth-5: 0 0% 18%;
+    
+    /* Semantic mappings */
+    --background: var(--depth-void);
+    --foreground: 0 0% 85%;
+    
+    --card: var(--depth-2);
+    --card-foreground: 0 0% 85%;
+    
+    --popover: var(--depth-3);
+    --popover-foreground: 0 0% 85%;
+    
+    --primary: 0 0% 18%;
+    --primary-foreground: 0 0% 95%;
+    
+    --secondary: var(--depth-2);
+    --secondary-foreground: 0 0% 75%;
+    
+    --muted: var(--depth-1);
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: var(--depth-3);
+    --accent-foreground: 0 0% 85%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+    
+    --border: 0 0% 10%;
+    --input: var(--depth-1);
+    --ring: 0 0% 20%;
+    
+    --radius: 12px;
+    
+    /* Text colors */
+    --text-primary: 0 0% 90%;
+    --text-secondary: 0 0% 70%;
+    --text-muted: 0 0% 50%;
+    --text-highlight: 0 0% 95%;
+    
+    /* Neumorphic shadows */
+    --shadow-raised-light: -4px -4px 8px hsl(0 0% 12%);
+    --shadow-raised-dark: 4px 4px 8px hsl(0 0% 2%);
+    --shadow-floating-light: -12px -12px 24px hsl(0 0% 15%);
+    --shadow-floating-dark: 12px 12px 24px hsl(0 0% 3%);
+    --shadow-hero-light: -24px -24px 48px hsl(0 0% 18%);
+    --shadow-hero-dark: 24px 24px 48px hsl(0 0% 1%);
+    
+    /* Haptic text shadows */
+    --text-relief-1: 0.5px 0.5px 1px hsl(0 0% 0%), -0.5px -0.5px 1px hsl(0 0% 20%);
+    --text-relief-2: 1px 1px 2px hsl(0 0% 0%), -1px -1px 2px hsl(0 0% 20%);
+    --text-relief-3: 2px 2px 4px hsl(0 0% 0%), -2px -2px 4px hsl(0 0% 24%);
+    
+    /* Gradients */
+    --gradient-tier-1: linear-gradient(145deg, hsl(0 0% 8%), hsl(0 0% 5%));
+    --gradient-tier-2: linear-gradient(145deg, hsl(0 0% 12%), hsl(0 0% 8%));
+    --gradient-tier-3: linear-gradient(145deg, hsl(0 0% 5%), hsl(0 0% 3%));
+    --gradient-tier-4: linear-gradient(145deg, hsl(0 0% 15%), hsl(0 0% 8%));
+    --gradient-logo: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 4%), hsl(0 0% 20%));
+    
+    /* Spacing */
+    --thumb-target: 52px;
+    --safe-margin: 16px;
+    --sidebar-width: 280px;
+    --topbar-height: 72px;
+    --dock-height: 80px;
+    
+    /* Sidebar */
+    --sidebar-background: var(--depth-1);
+    --sidebar-foreground: 0 0% 75%;
+    --sidebar-primary: 0 0% 18%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: var(--depth-2);
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 0 0% 20%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark mode is the only mode - same as root */
+    --background: var(--depth-void);
+    --foreground: 0 0% 85%;
   }
 }
 
@@ -98,8 +104,153 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 5%));
+    min-height: 100vh;
+  }
+  
+  /* Haptic Typography - All text has physical relief */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  h1 {
+    text-shadow: var(--text-relief-3);
+  }
+  
+  h2, h3 {
+    text-shadow: var(--text-relief-2);
+  }
+  
+  h4, h5, h6, p, span, a, button, label {
+    text-shadow: var(--text-relief-1);
+  }
+}
+
+@layer components {
+  /* Neumorphic Elevation Classes */
+  .neu-raised {
+    background: var(--gradient-tier-1);
+    box-shadow: 
+      var(--shadow-raised-light),
+      var(--shadow-raised-dark),
+      inset 0 0 0 0.5px hsl(0 0% 10%);
+    border-radius: var(--radius);
+  }
+  
+  .neu-floating {
+    background: var(--gradient-tier-2);
+    box-shadow: 
+      var(--shadow-floating-light),
+      var(--shadow-floating-dark),
+      0 20px 40px rgba(0,0,0,0.4),
+      inset 0 0 0 1px hsl(0 0% 14%);
+    border-radius: var(--radius);
+  }
+  
+  .neu-sunken {
+    background: var(--gradient-tier-3);
+    box-shadow: 
+      inset -4px -4px 8px hsl(0 0% 12%),
+      inset 4px 4px 8px hsl(0 0% 2%),
+      0 0 0 1px hsl(0 0% 8%);
+    border-radius: var(--radius);
+  }
+  
+  .neu-hero {
+    background: var(--gradient-tier-4);
+    box-shadow: 
+      var(--shadow-hero-light),
+      var(--shadow-hero-dark),
+      0 40px 80px rgba(0,0,0,0.5),
+      inset 0 0 0 1px hsl(0 0% 16%);
+    border-radius: calc(var(--radius) * 1.5);
+  }
+  
+  /* Haptic Text Classes */
+  .haptic-text-1 {
+    text-shadow: var(--text-relief-1);
+  }
+  
+  .haptic-text-2 {
+    text-shadow: var(--text-relief-2);
+  }
+  
+  .haptic-text-3 {
+    text-shadow: var(--text-relief-3);
+  }
+  
+  /* Logo styling with flipped NN */
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    background: var(--gradient-logo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(3px 3px 4px hsl(0 0% 0%)) drop-shadow(-2px -2px 4px hsl(0 0% 24%));
+  }
+  
+  .logo-nn-flipped {
+    display: inline-block;
+    transform: scaleX(-1);
+    mix-blend-mode: hard-light;
+    opacity: 0.7;
+  }
+  
+  /* Overlay for popups - Tier 5 */
+  .popup-overlay {
+    background: rgba(0, 0, 0, 0.85);
+    /* No blur - forbidden by design system */
+  }
+  
+  /* Mobile dock container */
+  .mobile-dock {
+    height: var(--dock-height);
+    background: var(--gradient-tier-2);
+    box-shadow: 
+      0 -12px 24px hsl(0 0% 15%),
+      0 -4px 8px hsl(0 0% 3%),
+      inset 0 1px 0 hsl(0 0% 14%);
+  }
+  
+  /* Desktop command bar */
+  .command-bar {
+    height: var(--topbar-height);
+    background: var(--gradient-tier-2);
+    box-shadow: 
+      0 12px 24px hsl(0 0% 3%),
+      inset 0 -1px 0 hsl(0 0% 14%);
+  }
+}
+
+@layer utilities {
+  /* Spring animation utilities */
+  .spring-press {
+    transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .spring-press:active {
+    transform: translateY(1px);
+  }
+  
+  /* Thumb-safe touch targets */
+  .touch-target {
+    min-width: var(--thumb-target);
+    min-height: var(--thumb-target);
+  }
+  
+  /* Safe margin utility */
+  .safe-margin {
+    margin: var(--safe-margin);
   }
 }

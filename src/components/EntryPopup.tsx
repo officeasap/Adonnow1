@@ -79,7 +79,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
         {/* Logo */}
         <div className="text-center mb-8">
           <Logo size="lg" />
-          <p className="mt-4 text-text-secondary font-body text-sm uppercase tracking-[0.3em] haptic-text-1">
+          <p className="mt-4 text-text-secondary font-body text-sm uppercase tracking-[0.3em]">
             Trading Limited
           </p>
         </div>
@@ -99,7 +99,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
                 className="h-40 mb-4"
                 label={minerals[currentMineral].name}
               />
-              <p className="text-center text-text-muted font-body text-sm haptic-text-1">
+              <p className="text-center text-text-muted font-body text-sm">
                 {minerals[currentMineral].description}
               </p>
             </motion.div>
@@ -123,10 +123,10 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
           </div>
         </div>
 
-        {/* Tagline */}
-        <p className="text-center text-text-secondary font-heading text-lg mb-8 haptic-text-2">
+        {/* Tagline - H3 level styling, NOT gold */}
+        <h3 className="text-center font-heading text-lg mb-8">
           Your Gateway to Earth's Treasures
-        </p>
+        </h3>
 
         {/* Enter Button */}
         <NeuButton

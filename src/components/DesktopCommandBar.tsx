@@ -27,16 +27,16 @@ export const DesktopCommandBar = () => {
         <Logo size="md" />
       </NavLink>
 
-      {/* Navigation */}
+      {/* Navigation - Light gray text, NO GOLD */}
       <nav className="flex items-center gap-1">
         {navItems.map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `px-4 py-2 rounded-[18px] font-body text-sm transition-all duration-200 haptic-text-1 ${
+              `px-4 py-2 rounded-[18px] font-body text-sm transition-all duration-200 ${
                 isActive
-                  ? "gold-text-subtle neu-sunken"
+                  ? "text-text-highlight neu-sunken"
                   : "text-text-secondary hover:text-text-primary hover:bg-depth-2/50"
               }`
             }

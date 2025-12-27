@@ -19,17 +19,17 @@ const WhoWeAre = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Hero */}
+        {/* Hero - H1 gets gold */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-heading text-4xl md:text-5xl text-text-highlight mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl mb-4">
             Who We Are
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto haptic-text-1">
+          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
             A legacy of excellence in mineral trading, bridging African resources 
             with global markets through ethical practices and unmatched expertise.
           </p>
@@ -45,16 +45,17 @@ const WhoWeAre = () => {
           <DepthContainer tier={4} className="p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h2 className="font-heading text-3xl text-text-highlight mb-4 haptic-text-2">
+                {/* H2 gets gold */}
+                <h2 className="font-heading text-3xl mb-4">
                   Our Philosophy
                 </h2>
-                <p className="text-text-secondary font-body mb-4 haptic-text-1">
+                <p className="text-text-secondary font-body mb-4">
                   At Adonnow Trading Limited, we believe that mineral trading is more 
                   than commerce—it's a responsibility. Every transaction represents 
                   a commitment to ethical sourcing, community development, and 
                   environmental stewardship.
                 </p>
-                <p className="text-text-muted font-body haptic-text-1">
+                <p className="text-text-muted font-body">
                   From the mines of Tanzania to the trading floors of London and 
                   Shanghai, we maintain the highest standards of integrity and 
                   transparency.
@@ -71,7 +72,7 @@ const WhoWeAre = () => {
                   return (
                     <DepthContainer key={i} tier={2} className="p-4 text-center">
                       <Icon className="mx-auto text-text-highlight mb-2" size={28} />
-                      <span className="text-text-secondary font-body text-sm haptic-text-1">
+                      <span className="text-text-secondary font-body text-sm">
                         {item.label}
                       </span>
                     </DepthContainer>
@@ -89,7 +90,8 @@ const WhoWeAre = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <h2 className="font-heading text-2xl text-text-highlight mb-8 text-center haptic-text-2">
+          {/* H2 gets gold */}
+          <h2 className="font-heading text-2xl mb-8 text-center">
             Our Journey
           </h2>
           <div className="space-y-4">
@@ -102,11 +104,12 @@ const WhoWeAre = () => {
                 transition={{ delay: index * 0.1 }}
               >
                 <DepthContainer tier={1} className="p-4 flex items-center gap-4">
-                  <span className="font-heading text-xl gold-text haptic-text-2">
+                  {/* Year - no gold, just highlight */}
+                  <span className="font-heading text-xl text-text-highlight">
                     {item.year}
                   </span>
                   <div className="h-px flex-1 bg-depth-3" />
-                  <span className="text-text-secondary font-body haptic-text-1">
+                  <span className="text-text-secondary font-body">
                     {item.event}
                   </span>
                 </DepthContainer>

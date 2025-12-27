@@ -57,9 +57,7 @@ export const NeuButton = forwardRef<HTMLButtonElement, NeuButtonProps>(
           "rounded-[18px] cursor-pointer touch-target",
           "transition-colors duration-200",
           "disabled:opacity-50 disabled:cursor-not-allowed",
-          variant === "hero" || variant === "floating" 
-            ? "gold-text-subtle" 
-            : "text-text-primary",
+          "text-text-primary", // Light gray text - NO GOLD
           variantStyles[variant],
           sizeStyles[size],
           className

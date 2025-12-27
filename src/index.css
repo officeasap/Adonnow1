@@ -6,7 +6,8 @@
 
 /* ADONNOW TRADING TERMINAL - Design System
    Haptic Neumorphic Mineral Trading Interface
-   All colors MUST be HSL - Charcoal gradient system only */
+   All colors MUST be HSL - Charcoal gradient system only
+   GOLD ONLY FOR H1, H2 - All other text light gray/white */
 
 @layer base {
   :root {
@@ -20,25 +21,25 @@
     
     /* Semantic mappings */
     --background: var(--depth-void);
-    --foreground: 0 0% 85%;
+    --foreground: 0 0% 90%;
     
     --card: var(--depth-2);
-    --card-foreground: 0 0% 85%;
+    --card-foreground: 0 0% 90%;
     
     --popover: var(--depth-3);
-    --popover-foreground: 0 0% 85%;
+    --popover-foreground: 0 0% 90%;
     
     --primary: 0 0% 18%;
     --primary-foreground: 0 0% 95%;
     
     --secondary: var(--depth-2);
-    --secondary-foreground: 0 0% 75%;
+    --secondary-foreground: 0 0% 80%;
     
     --muted: var(--depth-1);
-    --muted-foreground: 0 0% 45%;
+    --muted-foreground: 0 0% 55%;
     
     --accent: var(--depth-3);
-    --accent-foreground: 0 0% 85%;
+    --accent-foreground: 0 0% 90%;
     
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 95%;
@@ -49,23 +50,17 @@
     
     --radius: 18px;
     
-    /* Text colors */
-    --text-primary: 0 0% 90%;
-    --text-secondary: 0 0% 70%;
-    --text-muted: 0 0% 50%;
-    --text-highlight: 0 0% 95%;
+    /* Text colors - Light gray/white ONLY (no gold outside H1/H2) */
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 80%;
+    --text-muted: 0 0% 60%;
+    --text-highlight: 0 0% 100%;
     
-    /* Gold haptic typography - metallic, embossed, raised */
-    --gold-hue: 43;
-    --gold-sat: 35%;
-    --gold-base: var(--gold-hue) var(--gold-sat) 55%;
-    --gold-light: var(--gold-hue) calc(var(--gold-sat) - 10%) 70%;
-    --gold-dark: var(--gold-hue) calc(var(--gold-sat) + 5%) 35%;
-    
-    /* Gold text relief shadows - embossed positive relief */
-    --gold-relief-1: 0.5px 0.5px 1px hsl(0 0% 0%), -0.5px -0.5px 1px hsl(var(--gold-light) / 0.4);
-    --gold-relief-2: 1px 1px 2px hsl(0 0% 0%), -1px -1px 2px hsl(var(--gold-light) / 0.5);
-    --gold-relief-3: 2px 2px 4px hsl(0 0% 0%), -2px -2px 4px hsl(var(--gold-light) / 0.6);
+    /* Gold typography - ONLY FOR H1 AND H2 */
+    --gold-highlight: #FFD700;
+    --gold-body: #FFD700;
+    --gold-edge: #9A7B00;
+    --gold-cut: #4A3800;
     
     /* Neumorphic shadows */
     --shadow-raised-light: -4px -4px 8px hsl(0 0% 12%);
@@ -75,7 +70,7 @@
     --shadow-hero-light: -24px -24px 48px hsl(0 0% 18%);
     --shadow-hero-dark: 24px 24px 48px hsl(0 0% 1%);
     
-    /* Haptic text shadows */
+    /* Haptic text shadows - for non-gold text */
     --text-relief-1: 0.5px 0.5px 1px hsl(0 0% 0%), -0.5px -0.5px 1px hsl(0 0% 20%);
     --text-relief-2: 1px 1px 2px hsl(0 0% 0%), -1px -1px 2px hsl(0 0% 20%);
     --text-relief-3: 2px 2px 4px hsl(0 0% 0%), -2px -2px 4px hsl(0 0% 24%);
@@ -86,7 +81,6 @@
     --gradient-tier-3: linear-gradient(145deg, hsl(0 0% 5%), hsl(0 0% 3%));
     --gradient-tier-4: linear-gradient(145deg, hsl(0 0% 15%), hsl(0 0% 8%));
     --gradient-logo: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 4%), hsl(0 0% 20%));
-    --gradient-gold: linear-gradient(180deg, hsl(var(--gold-light)), hsl(var(--gold-base)), hsl(var(--gold-dark)));
     
     /* Spacing */
     --thumb-target: 52px;
@@ -97,11 +91,11 @@
     
     /* Sidebar */
     --sidebar-background: var(--depth-1);
-    --sidebar-foreground: 0 0% 75%;
+    --sidebar-foreground: 0 0% 80%;
     --sidebar-primary: 0 0% 18%;
     --sidebar-primary-foreground: 0 0% 95%;
     --sidebar-accent: var(--depth-2);
-    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-accent-foreground: 0 0% 90%;
     --sidebar-border: 0 0% 10%;
     --sidebar-ring: 0 0% 20%;
   }
@@ -109,7 +103,7 @@
   .dark {
     /* Dark mode is the only mode - same as root */
     --background: var(--depth-void);
-    --foreground: 0 0% 85%;
+    --foreground: 0 0% 90%;
   }
 }
 
@@ -129,34 +123,42 @@
     min-height: 100vh;
   }
   
-  /* Haptic Typography - All text has physical relief */
+  /* Haptic Typography - All headings use Playfair Display */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
   }
   
-  /* Gold Haptic Typography - Embossed positive relief for headings */
-  h1 {
-    color: hsl(var(--gold-base));
-    text-shadow: var(--gold-relief-3);
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(1px 1px 2px hsl(0 0% 0%)) drop-shadow(-1px -1px 1px hsl(var(--gold-light) / 0.5));
+  /* GOLD HAPTIC TYPOGRAPHY - H1 and H2 ONLY
+     Bright metallic engraving appearance
+     Raised, embossed like gold bar lettering */
+  h1, h2 {
+    color: var(--gold-body);
+    background: none;
+    text-shadow:
+      0 -2px 0 var(--gold-highlight),
+      0 2px 0 var(--gold-edge),
+      0 5px 3px var(--gold-cut),
+      0 0 2px rgba(0,0,0,1);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    filter: saturate(120%) contrast(125%);
+    /* Prohibition rules */
+    box-shadow: none;
+    border: none;
+    outline: none;
+    -webkit-text-fill-color: var(--gold-body);
   }
   
-  h2, h3 {
-    color: hsl(var(--gold-base));
-    text-shadow: var(--gold-relief-2);
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(1px 1px 1px hsl(0 0% 0%)) drop-shadow(-0.5px -0.5px 1px hsl(var(--gold-light) / 0.4));
+  /* H3 and below - Light gray/white, NO GOLD */
+  h3, h4, h5, h6 {
+    color: hsl(var(--text-highlight));
+    text-shadow: var(--text-relief-2);
+    -webkit-text-fill-color: hsl(var(--text-highlight));
   }
   
-  h4, h5, h6, p, span, a, label {
-    text-shadow: var(--text-relief-1);
+  /* All other text - Light gray/white, flat, no relief */
+  p, span, a, label, li, button, input, textarea, select {
+    color: hsl(var(--text-primary));
   }
 }
 
@@ -200,7 +202,7 @@
     border-radius: var(--radius);
   }
   
-  /* Haptic Text Classes */
+  /* Haptic Text Classes - Light gray/white only */
   .haptic-text-1 {
     text-shadow: var(--text-relief-1);
   }
@@ -213,26 +215,7 @@
     text-shadow: var(--text-relief-3);
   }
   
-  /* Gold haptic text - for nav labels and primary button text */
-  .gold-text {
-    color: hsl(var(--gold-base));
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(1px 1px 1px hsl(0 0% 0%)) drop-shadow(-0.5px -0.5px 1px hsl(var(--gold-light) / 0.4));
-  }
-  
-  .gold-text-subtle {
-    color: hsl(var(--gold-base));
-    background: var(--gradient-gold);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0.5px 0.5px 1px hsl(0 0% 0%));
-  }
-  
-  /* Logo styling with flipped NN */
+  /* Logo styling with flipped NN - uses charcoal gradient */
   .logo-text {
     font-family: 'Playfair Display', serif;
     font-weight: 700;

@@ -1,0 +1,72 @@
+SITE DNA — CANONICAL AUTHORITY
+Version: 1.0
+Status: IMMUTABLE
+
+UI/UX PHILOSOPHY
+The interface is a mineral trading terminal requiring tactile, authoritative presence. Gold is used exclusively for H1 and H2 elements to convey hierarchical importance through engraved bullion-style typography. All other elements maintain charcoal/black color scheme.
+
+COLOR SYSTEM
+Backgrounds: Charcoal/black ONLY (#050505 – #151515)
+Surfaces: Charcoal gradients ONLY
+No warm hues permitted in backgrounds, containers, borders, icons, shadows, accents, dividers, or UI chrome
+
+Gold Usage:
+PERMITTED ONLY FOR: H1, H2
+FORBIDDEN FOR: H3, H4, H5, H6, body text, paragraphs, lists, labels, captions, buttons, navigation, icons, badges, decorative elements
+
+Gold Appearance Requirements:
+Must resemble bright metallic engraving
+Must appear raised, embossed like gold bar lettering
+Must have high-luminance highlights and dark metallic cut edges
+Must be immediately legible on black
+Invalid if: brown, muddy, bronze, dark yellow, low-contrast, subtle
+
+TYPOGRAPHY SYSTEM
+Gold Typography Scope: H1, H2 ONLY
+All other typography: Light gray or white (#E5E5E5, #F2F2F2, #FFFFFF), flat, no relief
+
+Gold Typography Rules (Haptic Relief - Positive Relief):
+Appears raised above surface
+Monolithic, sculptural glyphs
+Tall letterforms
+Clear specular highlight ridge
+Defined engraved shadow edge
+NOT: flat color, glow, neon, gradient wash, soft shadow
+
+Gold Color Specification:
+Highlight: near #FFD700
+Body: true metallic gold
+Edge: near #9A7B00
+Deep cut: near #4A3800
+No amber, orange, bronze
+
+Font Families:
+System or geometric sans-serif
+Gold text weight: 700-800
+Other text: existing weights
+
+Contrast Requirements:
+Gold text must be immediately legible on charcoal
+All text must meet WCAG AA contrast ratios
+
+INTERACTION BEHAVIOR
+Hover: No color change for gold text, relief may intensify slightly, no glow
+Active/Pressed: Relief depth may increase, gold tone unchanged
+
+LAYOUT INVARIANTS
+Layout: Unchanged
+Routing: Unchanged
+Navigation: Unchanged
+Component Hierarchy: Unchanged
+
+FORBIDDEN ACTIONS
+Gold outside H1/H2
+Subtle, dark, or muddy gold
+Decorative glow
+Color experimentation
+Warm UI accents
+"Best practice" reinterpretation
+
+AUTHORITY RULE
+This document overrides all specifications, AI interpretations, developer preferences
+If implementation conflicts with this document, it must be corrected

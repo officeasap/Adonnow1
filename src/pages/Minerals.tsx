@@ -50,17 +50,17 @@ const Minerals = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Hero */}
+        {/* Hero - H1 gets gold */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-heading text-4xl md:text-5xl text-text-highlight mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl mb-4">
             Mineral Portfolio
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto haptic-text-1">
+          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
             Premium minerals sourced from verified origins, 
             certified for quality and ethical provenance.
           </p>
@@ -87,8 +87,8 @@ const Minerals = () => {
                       />
                       <div className="absolute top-4 left-4">
                         <div className="neu-raised px-3 py-1.5 rounded-[18px]">
-                          <Icon size={18} className="text-gold-light inline mr-2" />
-                          <span className="text-text-secondary font-body text-xs uppercase tracking-wider haptic-text-1">
+                          <Icon size={18} className="text-text-highlight inline mr-2" />
+                          <span className="text-text-secondary font-body text-xs uppercase tracking-wider">
                             {mineral.tagline}
                           </span>
                         </div>
@@ -98,10 +98,11 @@ const Minerals = () => {
                     {/* Content Side */}
                     <div className="p-6 md:p-8 flex flex-col justify-between">
                       <div>
-                        <h2 className="font-heading text-3xl text-text-highlight mb-4 haptic-text-2">
+                        {/* H2 gets gold */}
+                        <h2 className="font-heading text-3xl mb-4">
                           {mineral.name}
                         </h2>
-                        <p className="text-text-secondary font-body mb-6 haptic-text-1">
+                        <p className="text-text-secondary font-body mb-6">
                           {mineral.description}
                         </p>
 
@@ -114,10 +115,10 @@ const Minerals = () => {
                               animate={false}
                               className="p-3 text-center"
                             >
-                              <span className="block text-text-muted font-body text-xs uppercase tracking-wider mb-1 haptic-text-1">
+                              <span className="block text-text-muted font-body text-xs uppercase tracking-wider mb-1">
                                 {spec.label}
                               </span>
-                              <span className="block text-text-highlight font-body text-sm haptic-text-1">
+                              <span className="block text-text-highlight font-body text-sm">
                                 {spec.value}
                               </span>
                             </DepthContainer>
@@ -151,10 +152,11 @@ const Minerals = () => {
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <DepthContainer tier={2} className="p-6 text-center">
-            <h3 className="font-heading text-xl text-text-highlight mb-2 haptic-text-2">
+            {/* H3 - white, not gold */}
+            <h3 className="font-heading text-xl mb-2">
               More Minerals Coming Soon
             </h3>
-            <p className="text-text-muted font-body text-sm haptic-text-1">
+            <p className="text-text-muted font-body text-sm">
               Gold, Cobalt, and Rare Earth Elements
             </p>
           </DepthContainer>

@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-type MineralType = "coltan" | "copper" | "tanzanite";
+/**
+ * CANONICAL MINERAL DOMAIN
+ * Gold is a first-class mineral and MUST exist here.
+ */
+type MineralType = "coltan" | "copper" | "gold" | "tanzanite";
 
 interface MineralPlaceholderProps {
   mineral: MineralType;
@@ -9,15 +13,22 @@ interface MineralPlaceholderProps {
   label?: string;
 }
 
+/**
+ * NOTE:
+ * All gradients remain CHARCOAL-ONLY.
+ * Gold mineral ≠ gold color (Site DNA compliant).
+ */
 const mineralGradients: Record<MineralType, string> = {
-  coltan: "from-depth-3 via-depth-2 to-depth-4", // Dark metallic
-  copper: "from-depth-4 via-depth-3 to-depth-2", // Warm charcoal
-  tanzanite: "from-depth-2 via-depth-4 to-depth-3", // Cool charcoal
+  coltan: "from-depth-3 via-depth-2 to-depth-4",
+  copper: "from-depth-4 via-depth-3 to-depth-2",
+  gold: "from-depth-4 via-depth-4 to-depth-3", // neutral charcoal
+  tanzanite: "from-depth-2 via-depth-4 to-depth-3",
 };
 
 const mineralShimmer: Record<MineralType, string> = {
   coltan: "bg-gradient-to-r from-transparent via-depth-5/20 to-transparent",
   copper: "bg-gradient-to-r from-transparent via-depth-5/30 to-transparent",
+  gold: "bg-gradient-to-r from-transparent via-depth-5/15 to-transparent",
   tanzanite: "bg-gradient-to-r from-transparent via-depth-5/25 to-transparent",
 };
 
@@ -38,7 +49,7 @@ export const MineralPlaceholder = ({
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
-      {/* Shimmer effect */}
+      {/* Shimmer layer */}
       <div
         className={cn(
           "absolute inset-0 animate-shimmer",
@@ -47,7 +58,7 @@ export const MineralPlaceholder = ({
         style={{ backgroundSize: "200% 100%" }}
       />
 
-      {/* Label */}
+      {/* Optional label */}
       {label && (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-text-secondary font-body text-sm uppercase tracking-widest haptic-text-1">
@@ -56,7 +67,7 @@ export const MineralPlaceholder = ({
         </div>
       )}
 
-      {/* Corner accent */}
+      {/* Structural corner accent */}
       <div className="absolute bottom-2 right-2">
         <div className="w-2 h-2 rounded-full bg-depth-5/30" />
       </div>

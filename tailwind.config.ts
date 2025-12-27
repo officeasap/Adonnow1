@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,30 +24,32 @@ export default {
       },
       colors: {
         // Canvas
-        "canvas": "hsl(var(--canvas))",
-        
+        canvas: "hsl(var(--canvas))",
+
         // Depth States
         "depth-engraved": "hsl(var(--depth-engraved))",
         "depth-raised": "hsl(var(--depth-raised))",
         "depth-pressed": "hsl(var(--depth-pressed))",
-        
+
         // Semantic colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        
-        // Text colors
-        "text-primary": "hsl(var(--text-primary))",
+
+        // ✅ Text colors (fixed globally)
+        "text-primary": "#d4ccb5", // premium beige shade
         "text-secondary": "hsl(var(--text-secondary))",
         "text-muted": "hsl(var(--text-muted))",
         "text-highlight": "hsl(var(--text-highlight))",
-        
+
+        // ✅ Primary palette (fixed globally)
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#d4ccb5",       // brand color
+          foreground: "#000000",    // text color on primary buttons
         },
+
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -84,9 +91,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        "engraved": "inset 2px 2px 6px hsl(0 0% 3%), inset -1px -1px 4px hsl(0 0% 12%)",
-        "raised": "3px 3px 8px hsl(0 0% 3%), -2px -2px 6px hsl(0 0% 14%)",
-        "pressed": "inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%)",
+        engraved: "inset 2px 2px 6px hsl(0 0% 3%), inset -1px -1px 4px hsl(0 0% 12%)",
+        raised: "3px 3px 8px hsl(0 0% 3%), -2px -2px 6px hsl(0 0% 14%)",
+        pressed: "inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%)",
       },
       keyframes: {
         "accordion-down": {

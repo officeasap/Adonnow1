@@ -65,7 +65,7 @@ const Contact = () => {
               </p>
               <p className="text-text-secondary font-body text-sm">
                 PO BOX 667-00523<br />
-                Nairobi, Kenya
+                Yaya Center | Kilimani, Nairobi, Kenya
               </p>
             </DepthContainer>
 
@@ -88,7 +88,8 @@ const Contact = () => {
                 href="mailto:adonnowtrading@gmail.com"
                 className="block text-text-highlight font-body text-sm hover:underline break-all"
               >
-                adonnowtrading@gmail.com
+                <p>info@adonnowtrading.com</p> 
+                <p>care@adonnowtrading.com</p>
               </a>
               <p className="text-text-secondary font-body text-xs mt-2">
                 Response within 24 hours

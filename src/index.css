@@ -4,7 +4,7 @@
 
 /* ADONNOW TRADING TERMINAL - Manufacturing Specification
    Industrial Mineral Trading Interface
-   Canvas: #121212 | Text: #B0B0B0 | Gold: H1/H2 ONLY */
+   Canvas: #121212 | Text: #B0B0B0 | Brand: #d4ccb5 for H1/H2 */
 
 @layer base {
   :root {
@@ -27,8 +27,8 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 69%;
     
-    --primary: 0 0% 15%;
-    --primary-foreground: 0 0% 69%;
+    --primary: #d4ccb5; /* brand color globally */
+    --primary-foreground: #000000;
     
     --secondary: var(--depth-engraved);
     --secondary-foreground: 0 0% 60%;
@@ -49,16 +49,13 @@
     --radius: 18px;
     
     /* TYPOGRAPHY LAW - Default #B0B0B0 */
-    --text-primary: 0 0% 69%;
+    --text-primary: #d4ccb5; /* fixed globally */
     --text-secondary: 0 0% 55%;
     --text-muted: 0 0% 45%;
     --text-highlight: 0 0% 85%;
     
-    /* GOLD HIERARCHY - H1/H2 ONLY */
-    --gold-highlight: #FFD700;
-    --gold-body: #FFD700;
-    --gold-edge: #9A7B00;
-    --gold-cut: #4A3800;
+    /* BRAND HIERARCHY - H1/H2 ONLY */
+    --brand-heading: #d4ccb5;
     
     /* DEPTH HIERARCHY - Industrial shadows */
     --shadow-engraved: inset 2px 2px 6px hsl(0 0% 3%), inset -1px -1px 4px hsl(0 0% 12%);
@@ -110,23 +107,17 @@
     font-weight: 700;
   }
   
-  /* GOLD HAPTIC TYPOGRAPHY - H1 and H2 ONLY
-     Metallic engraving, raised, high contrast on #121212 */
+  /* BRAND TYPOGRAPHY - H1 and H2 ONLY */
   h1, h2 {
-    color: var(--gold-body);
+    color: var(--brand-heading);
     background: none;
-    text-shadow:
-      0 -2px 0 var(--gold-highlight),
-      0 2px 0 var(--gold-edge),
-      0 5px 3px var(--gold-cut),
-      0 0 2px rgba(0,0,0,1);
+    text-shadow: none;
     font-weight: 800;
     letter-spacing: 0.03em;
-    filter: saturate(120%) contrast(125%);
     box-shadow: none;
     border: none;
     outline: none;
-    -webkit-text-fill-color: var(--gold-body);
+    -webkit-text-fill-color: var(--brand-heading);
   }
   
   /* H3+ - #B0B0B0, flat, no relief */
@@ -136,37 +127,31 @@
     text-shadow: none;
   }
   
-  /* All other text - #B0B0B0 */
+  /* All other text */
   p, span, a, label, li, button, input, textarea, select {
-    color: hsl(var(--text-primary));
+    color: var(--text-primary);
   }
 }
 
 @layer components {
-  /* DEPTH HIERARCHY - Three states only */
-  
-  /* ENGRAVED - Structure/Law */
   .depth-engraved {
     background: hsl(var(--depth-engraved));
     box-shadow: var(--shadow-engraved);
     border-radius: var(--radius);
   }
   
-  /* RAISED - Action */
   .depth-raised {
     background: hsl(var(--depth-raised));
     box-shadow: var(--shadow-raised);
     border-radius: var(--radius);
   }
   
-  /* PRESSED - Confirmation */
   .depth-pressed {
     background: hsl(var(--depth-pressed));
     box-shadow: var(--shadow-pressed);
     border-radius: var(--radius);
   }
   
-  /* Legacy neumorphic classes mapped to new system */
   .neu-raised {
     background: hsl(var(--depth-raised));
     box-shadow: var(--shadow-raised);
@@ -195,7 +180,6 @@
     border-radius: var(--radius);
   }
   
-  /* Logo styling - industrial */
   .logo-text {
     font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 700;
@@ -208,19 +192,16 @@
     transform: scaleX(-1);
   }
   
-  /* Overlay for popups */
   .popup-overlay {
     background: rgba(0, 0, 0, 0.9);
   }
   
-  /* Mobile dock container */
   .mobile-dock {
     height: var(--dock-height);
     background: hsl(var(--depth-engraved));
     box-shadow: var(--shadow-engraved);
   }
   
-  /* Desktop command bar */
   .command-bar {
     height: var(--topbar-height);
     background: hsl(var(--depth-engraved));
@@ -229,7 +210,6 @@
 }
 
 @layer utilities {
-  /* MICRO-INTERACTION LAW - Industrial, intentional */
   .spring-press {
     transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
   }
@@ -238,13 +218,11 @@
     transform: translateY(1px);
   }
   
-  /* Thumb-safe touch targets */
   .touch-target {
     min-width: var(--thumb-target);
     min-height: var(--thumb-target);
   }
   
-  /* Safe margin utility */
   .safe-margin {
     margin: var(--safe-margin);
   }

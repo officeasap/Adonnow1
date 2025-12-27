@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import Logo from "./Logo";
-import NeuButton from "./NeuButton";
-import { Phone } from "lucide-react";
 
 const navItems = [
   { path: "/", label: "Home" },
@@ -17,27 +14,31 @@ const navItems = [
 export const DesktopCommandBar = () => {
   return (
     <motion.header
-      className="hidden md:flex fixed top-0 left-0 right-0 z-40 command-bar items-center justify-between px-8"
+      className="hidden md:flex fixed top-0 left-0 right-0 z-40 command-bar items-center justify-between px-8 py-4 bg-canvas neu-raised"
       initial={{ y: -72 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
-      {/* Logo */}
-      <NavLink to="/" className="flex-shrink-0">
-        <Logo size="md" />
+      {/* Logo - Official Adonnow Rectangle with breathing space */}
+      <NavLink to="/" className="flex-shrink-0 flex items-center justify-center mr-6">
+        <img
+          src="/images/LogoAdonnowOfficial.png"
+          alt="Adonnow Limited Logo"
+          className="h-12 w-auto neu-raised p-1"
+        />
       </NavLink>
 
-      {/* Navigation - Light gray text, NO GOLD */}
-      <nav className="flex items-center gap-1">
+      {/* Navigation - Sculpted Buttons */}
+      <nav className="flex items-center gap-4">
         {navItems.map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `px-4 py-2 rounded-[18px] font-body text-sm transition-all duration-200 ${
+              `px-6 py-2 rounded-[18px] font-body text-sm tracking-wide transition-all duration-200 neu-button ${
                 isActive
-                  ? "text-text-highlight neu-sunken"
-                  : "text-text-secondary hover:text-text-primary hover:bg-depth-2/50"
+                  ? "neu-sunken text-text-highlight"
+                  : "neu-raised text-text-secondary hover:text-text-primary"
               }`
             }
           >
@@ -45,16 +46,6 @@ export const DesktopCommandBar = () => {
           </NavLink>
         ))}
       </nav>
-
-      {/* CTA */}
-      <NeuButton
-        variant="raised"
-        size="sm"
-        icon={<Phone size={16} />}
-        onClick={() => window.location.href = "tel:+254707513272"}
-      >
-        +254 707 513 272
-      </NeuButton>
     </motion.header>
   );
 };

@@ -15,53 +15,79 @@ const minerals = [
   { type: "tanzanite" as const, name: "Tanzanite", tagline: "GIA Certified Gemstones" },
 ];
 
+// ✅ Use actual images from public/images
+const heroImages = [
+  { src: "/images/tanzanite1.png", alt: "Adonnow Trading — Tanzanite" },
+  { src: "/images/gold1.png", alt: "Adonnow Trading — Gold Bullion" },
+  { src: "/images/copper3.png", alt: "Adonnow Trading — Copper Cathodes" },
+  { src: "/images/coltan2.png", alt: "Adonnow Trading — Coltan Ore" },
+];
+
 const Index = () => {
   const navigate = useNavigate();
+
   const [currentMineral, setCurrentMineral] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [popupComplete, setPopupComplete] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const mineralInterval = setInterval(() => {
       setCurrentMineral((prev) => (prev + 1) % minerals.length);
     }, 8000);
-    return () => clearInterval(interval);
+    return () => clearInterval(mineralInterval);
   }, []);
 
-  const nextMineral = () => setCurrentMineral((prev) => (prev + 1) % minerals.length);
-  const prevMineral = () => setCurrentMineral((prev) => (prev - 1 + minerals.length) % minerals.length);
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(slideInterval);
+  }, []);
+
+  const nextMineral = () =>
+    setCurrentMineral((prev) => (prev + 1) % minerals.length);
+  const prevMineral = () =>
+    setCurrentMineral((prev) => (prev - 1 + minerals.length) % minerals.length);
+
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
 
   return (
     <div className="min-h-screen bg-canvas">
       <EntryPopup onComplete={() => setPopupComplete(true)} />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 pt-20 md:pt-24 pb-24 md:pb-8">
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 pt-24 pb-24">
         <div className="max-w-6xl mx-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Column - Text */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+            {/* LEFT */}
             <motion.div
-              className="text-center lg:text-left"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+              transition={{ duration: 0.4 }}
+              className="text-center lg:text-left"
             >
-              <div className="mb-6">
-                <Logo size="xl" />
-                <p className="mt-2 text-text-secondary font-body text-sm uppercase tracking-[0.3em]">
-                  Trading Limited
-                </p>
-              </div>
-
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-                East African Mineral Exports
-              </h1>
-
-              <p className="text-text-secondary font-body text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0">
-                Strategic commodity sourcing and international trade facilitation. 
-                Copper cathodes, coltan, gold, and tanzanite.
+              <p className="mt-2 text-text-secondary text-sm uppercase tracking-[0.3em]">
+                Trading Limited
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <h1
+  className="font-heading text-5xl lg:text-6xl leading-tight mt-6 mb-6"
+  style={{ color: "#b7d1fd" }}
+>
+  East African Mineral Exports
+</h1>
+
+
+              <p className="text-text-secondary text-lg max-w-xl mx-auto lg:mx-0 mb-8">
+                Strategic sourcing and international trade of copper cathodes,
+                coltan, refined gold, and certified tanzanite.
+              </p>
+
+              <div className="flex gap-4 justify-center lg:justify-start">
                 <NeuButton
                   variant="raised"
                   size="lg"
@@ -81,70 +107,63 @@ const Index = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Mineral Switcher */}
+            {/* RIGHT */}
             <motion.div
-              className="relative"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
+              transition={{ duration: 0.4 }}
             >
-              <DepthContainer depth="engraved" className="p-6 md:p-8">
-                {/* Mineral Display */}
-                <div className="relative">
-                  <MineralPlaceholder
-                    mineral={minerals[currentMineral].type}
-                    className="h-64 md:h-80 mb-6"
+              <DepthContainer depth="engraved" className="p-8">
+
+                {/* HERO SLIDER */}
+                <div className="relative mb-6">
+                  <motion.img
+                    key={currentSlide}
+                    src={heroImages[currentSlide].src}
+                    alt={heroImages[currentSlide].alt}
+                    className="w-full h-80 object-cover rounded-[18px] neu-raised"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6 }}
                   />
-                  
-                  {/* Navigation Controls */}
-                  <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between pointer-events-none">
-                    <motion.button
-                      className="depth-raised w-10 h-10 rounded-[18px] flex items-center justify-center pointer-events-auto"
-                      onClick={prevMineral}
-                      whileTap={{ scale: 0.95 }}
+
+                  <div className="absolute inset-y-0 left-2 right-2 flex justify-between items-center pointer-events-none">
+                    <button
+                      className="depth-raised w-10 h-10 rounded-[18px] pointer-events-auto"
+                      onClick={prevSlide}
                     >
-                      <ChevronLeft size={18} className="text-text-muted" />
-                    </motion.button>
-                    <motion.button
-                      className="depth-raised w-10 h-10 rounded-[18px] flex items-center justify-center pointer-events-auto"
-                      onClick={nextMineral}
-                      whileTap={{ scale: 0.95 }}
+                      <ChevronLeft size={18} />
+                    </button>
+                    <button
+                      className="depth-raised w-10 h-10 rounded-[18px] pointer-events-auto"
+                      onClick={nextSlide}
                     >
-                      <ChevronRight size={18} className="text-text-muted" />
-                    </motion.button>
+                      <ChevronRight size={18} />
+                    </button>
                   </div>
                 </div>
 
-                {/* Mineral Info */}
-                <motion.div
-                  key={currentMineral}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="font-heading text-2xl mb-1">
-                    {minerals[currentMineral].name}
-                  </h3>
-                  <p className="text-text-secondary font-body text-sm uppercase tracking-wider">
-                    {minerals[currentMineral].tagline}
-                  </p>
-                </motion.div>
+                {/* MINERAL INFO */}
+                <h3 className="font-heading text-2xl mb-1">
+                  {minerals[currentMineral].name}
+                </h3>
+                <p className="text-text-secondary text-sm uppercase tracking-wider">
+                  {minerals[currentMineral].tagline}
+                </p>
 
-                {/* Mineral Selector */}
                 <div className="flex gap-3 mt-6">
-                  {minerals.map((mineral, index) => (
-                    <motion.button
-                      key={mineral.type}
-                      className={`flex-1 py-3 rounded-[18px] text-xs font-body uppercase tracking-wider transition-all ${
-                        index === currentMineral
+                  {minerals.map((m, i) => (
+                    <button
+                      key={m.type}
+                      className={`flex-1 py-3 rounded-[18px] text-xs uppercase tracking-wider ${
+                        i === currentMineral
                           ? "depth-pressed text-text-highlight"
                           : "depth-raised text-text-muted"
                       }`}
-                      onClick={() => setCurrentMineral(index)}
-                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setCurrentMineral(i)}
                     >
-                      {mineral.type}
-                    </motion.button>
+                      {m.type}
+                    </button>
                   ))}
                 </div>
               </DepthContainer>
@@ -153,21 +172,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 px-4">
+      {/* CTA */}
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto">
-          <DepthContainer depth="engraved" className="p-8 md:p-12 text-center">
-            <h2 className="font-heading text-3xl md:text-4xl mb-4">
+          <DepthContainer depth="engraved" className="p-12 text-center">
+            <h2 className="font-heading text-4xl mb-4">
               Begin Trading
             </h2>
-            <p className="text-text-secondary font-body text-lg mb-8 max-w-xl mx-auto">
-              Contact our Nairobi desk for pricing and availability.
+            <p className="text-text-secondary text-lg mb-8">
+              Contact our Nairobi trading desk for pricing and availability.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex gap-4 justify-center">
               <NeuButton
                 variant="raised"
                 size="lg"
-                onClick={() => window.location.href = "tel:+254707513272"}
+                onClick={() => (window.location.href = "tel:+254707513272")}
               >
                 +254 707 513 272
               </NeuButton>
@@ -185,17 +204,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
-        <div className="max-w-6xl mx-auto text-center">
-          <Logo size="sm" />
-          <p className="mt-4 text-text-muted font-body text-sm">
-            © {new Date().getFullYear()} Adonnow Trading Limited
-          </p>
-          <p className="mt-2 text-text-muted font-body text-xs">
-            Nairobi, Kenya
-          </p>
-        </div>
+      {/* FOOTER */}
+      <footer className="py-8 text-center">
+        <Logo size="sm" />
+        <p className="mt-4 text-text-muted text-sm">
+          © {new Date().getFullYear()} Adonnow Trading Limited — All rights reserve.
+        </p>
       </footer>
     </div>
   );

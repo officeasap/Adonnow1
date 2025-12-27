@@ -1,39 +1,33 @@
 import { motion } from "framer-motion";
 import DepthContainer from "@/components/DepthContainer";
 import NeuButton from "@/components/NeuButton";
-import { ArrowRight, Briefcase, Calculator, Shield, Truck, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const services = [
   {
-    icon: Briefcase,
-    title: "Portfolio Management",
-    description: "Comprehensive mineral portfolio management tailored to your investment goals and risk appetite.",
-    features: ["Diversification strategy", "Market timing", "Performance tracking"],
+    title: "Mineral Sourcing",
+    description: "Direct procurement from verified mining operations across East Africa.",
   },
   {
-    icon: Calculator,
-    title: "Supply Chain Financing",
-    description: "Flexible financing solutions to optimize your mineral trading operations and cash flow.",
-    features: ["Trade finance", "Letter of credit", "Payment terms"],
+    title: "Quality Verification",
+    description: "Laboratory analysis, purity testing, and certification services.",
   },
   {
-    icon: Shield,
-    title: "Commodity Hedging",
-    description: "Protect your positions with sophisticated hedging strategies against price volatility.",
-    features: ["Futures contracts", "Options strategies", "Risk mitigation"],
+    title: "Export Documentation",
+    description: "Complete licensing, customs clearance, and regulatory compliance.",
   },
   {
-    icon: Truck,
-    title: "Logistics & Export",
-    description: "End-to-end logistics management from African mines to global destinations.",
-    features: ["Customs clearance", "Secure transport", "Documentation"],
+    title: "Logistics Coordination",
+    description: "Secure transport and delivery to international destinations.",
   },
   {
-    icon: Users,
-    title: "Consulting Services",
-    description: "Expert advisory on market entry, compliance, and strategic partnerships in mineral trading.",
-    features: ["Market analysis", "Due diligence", "Partnership facilitation"],
+    title: "Trade Financing",
+    description: "Letters of credit, payment terms, and transaction facilitation.",
+  },
+  {
+    title: "Market Advisory",
+    description: "Pricing intelligence, demand analysis, and strategic guidance.",
   },
 ];
 
@@ -41,87 +35,65 @@ const Services = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Hero - H1 gets gold */}
+    <div className="min-h-screen bg-canvas pt-20 md:pt-28 pb-24 md:pb-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <h1 className="font-heading text-4xl md:text-5xl mb-4">
-            Our Services
+            Adonnow Services
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
-            Comprehensive solutions for every stage of your mineral trading journey, 
-            from sourcing to delivery.
-          </p>
         </motion.div>
 
         {/* Services Grid */}
         <motion.section
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <DepthContainer tier={2} className="p-6 h-full flex flex-col">
-                    <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center mb-4">
-                      <Icon className="text-text-highlight" size={24} />
-                    </div>
-                    {/* H3 - white, not gold */}
-                    <h3 className="font-heading text-lg mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-text-secondary font-body text-sm mb-4 flex-grow">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-1">
-                      {service.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="flex items-center gap-2 text-text-muted font-body text-xs"
-                        >
-                          <div className="w-1 h-1 rounded-full bg-depth-5" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </DepthContainer>
-                </motion.div>
-              );
-            })}
+          <div className="grid md:grid-cols-2 gap-4">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index }}
+              >
+                <DepthContainer depth="engraved" className="p-6 h-full">
+                  <h3 className="font-heading text-lg mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-text-secondary font-body text-sm">
+                    {service.description}
+                  </p>
+                </DepthContainer>
+              </motion.div>
+            ))}
           </div>
         </motion.section>
 
-        {/* CTA */}
+        {/* Expansion Note */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
         >
-          <DepthContainer tier={4} className="p-8 text-center">
-            {/* H2 gets gold */}
+          <DepthContainer depth="engraved" className="p-8 text-center">
             <h2 className="font-heading text-2xl mb-4">
-              Ready to Get Started?
+              Service Expansion
             </h2>
-            <p className="text-text-secondary font-body mb-6 max-w-xl mx-auto">
-              Contact our team to discuss how we can support your mineral trading objectives.
+            <p className="text-text-secondary font-body max-w-xl mx-auto mb-6">
+              Adonnow Trading Limited continues to develop additional service capabilities 
+              in response to client requirements and market conditions.
             </p>
             <NeuButton
-              variant="hero"
+              variant="raised"
               size="lg"
               icon={<ArrowRight size={18} />}
               iconPosition="right"

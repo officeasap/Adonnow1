@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type NeuButtonVariant = "raised" | "floating" | "hero" | "ghost";
+type NeuButtonVariant = "raised" | "engraved" | "pressed";
 type NeuButtonSize = "sm" | "md" | "lg" | "xl";
 
 interface NeuButtonProps {
@@ -18,10 +18,9 @@ interface NeuButtonProps {
 }
 
 const variantStyles: Record<NeuButtonVariant, string> = {
-  raised: "neu-raised",
-  floating: "neu-floating",
-  hero: "neu-hero",
-  ghost: "bg-transparent hover:bg-depth-2/50",
+  raised: "depth-raised",
+  engraved: "depth-engraved",
+  pressed: "depth-pressed",
 };
 
 const sizeStyles: Record<NeuButtonSize, string> = {
@@ -55,25 +54,20 @@ export const NeuButton = forwardRef<HTMLButtonElement, NeuButtonProps>(
         className={cn(
           "relative inline-flex items-center justify-center gap-3 font-body font-medium",
           "rounded-[18px] cursor-pointer touch-target",
-          "transition-colors duration-200",
+          "transition-all duration-100 ease-out",
           "disabled:opacity-50 disabled:cursor-not-allowed",
-          "text-text-primary", // Light gray text - NO GOLD
+          "text-text-primary",
           variantStyles[variant],
           sizeStyles[size],
           className
         )}
-        whileHover={!disabled ? {
-          y: -1,
-          transition: { type: "spring", stiffness: 400, damping: 25 },
-        } : undefined}
         whileTap={!disabled ? {
           y: 1,
-          boxShadow: "inset -4px -4px 8px hsl(0 0% 12%), inset 4px 4px 8px hsl(0 0% 2%)",
-          transition: { type: "spring", stiffness: 400, damping: 25 },
+          boxShadow: "inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%)",
         } : undefined}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
       >
         {icon && iconPosition === "left" && (
           <span className="flex-shrink-0">{icon}</span>

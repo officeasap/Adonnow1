@@ -2,34 +2,32 @@ import { motion } from "framer-motion";
 import { forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type DepthTier = 0 | 1 | 2 | 3 | 4;
+type DepthState = "engraved" | "raised" | "pressed";
 
 interface DepthContainerProps {
-  tier?: DepthTier;
+  depth?: DepthState;
   animate?: boolean;
   className?: string;
   children?: ReactNode;
   onClick?: () => void;
 }
 
-const tierStyles: Record<DepthTier, string> = {
-  0: "bg-gradient-to-b from-depth-void to-depth-1",
-  1: "neu-raised",
-  2: "neu-floating",
-  3: "neu-sunken",
-  4: "neu-hero",
+const depthStyles: Record<DepthState, string> = {
+  engraved: "depth-engraved",
+  raised: "depth-raised",
+  pressed: "depth-pressed",
 };
 
 export const DepthContainer = forwardRef<HTMLDivElement, DepthContainerProps>(
-  ({ tier = 1, animate = true, className, children, onClick }, ref) => {
+  ({ depth = "engraved", animate = true, className, children, onClick }, ref) => {
     if (animate) {
       return (
         <motion.div
           ref={ref}
-          className={cn(tierStyles[tier], "rounded-[18px]", className)}
-          initial={{ opacity: 0, y: 20 }}
+          className={cn(depthStyles[depth], "rounded-[18px]", className)}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={onClick}
         >
           {children}
@@ -40,7 +38,7 @@ export const DepthContainer = forwardRef<HTMLDivElement, DepthContainerProps>(
     return (
       <div
         ref={ref}
-        className={cn(tierStyles[tier], "rounded-[18px]", className)}
+        className={cn(depthStyles[depth], "rounded-[18px]", className)}
         onClick={onClick}
       >
         {children}

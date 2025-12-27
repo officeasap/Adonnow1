@@ -1,72 +1,69 @@
-SITE DNA — CANONICAL AUTHORITY
-Version: 1.0
-Status: IMMUTABLE
+ADONNOW TRADING LIMITED — SITE DNA
+================================
 
-UI/UX PHILOSOPHY
-The interface is a mineral trading terminal requiring tactile, authoritative presence. Gold is used exclusively for H1 and H2 elements to convey hierarchical importance through engraved bullion-style typography. All other elements maintain charcoal/black color scheme.
+PRIME DIRECTIVE: Mineral trading terminal, not marketing website.
 
-COLOR SYSTEM
-Backgrounds: Charcoal/black ONLY (#050505 – #151515)
-Surfaces: Charcoal gradients ONLY
-No warm hues permitted in backgrounds, containers, borders, icons, shadows, accents, dividers, or UI chrome
+CANVAS LAW:
+- Background: #121212 ONLY
+- No gradients, textures, noise, transparency, overlays
+- Void must breathe. Negative space is structural.
 
-Gold Usage:
-PERMITTED ONLY FOR: H1, H2
-FORBIDDEN FOR: H3, H4, H5, H6, body text, paragraphs, lists, labels, captions, buttons, navigation, icons, badges, decorative elements
+TYPOGRAPHY LAW:
+- Default text: #B0B0B0
+- Institutional, restrained, readable
+- No warm tones, no decorative styling, no friendliness bias
 
-Gold Appearance Requirements:
-Must resemble bright metallic engraving
-Must appear raised, embossed like gold bar lettering
-Must have high-luminance highlights and dark metallic cut edges
-Must be immediately legible on black
-Invalid if: brown, muddy, bronze, dark yellow, low-contrast, subtle
+FONT LAW:
+- Neutral, industrial, low-contrast typeface
+- No humanist curves, no rounded terminals
+- No trendy/startup fonts
+- Default: system-ui / Helvetica-like geometry
 
-TYPOGRAPHY SYSTEM
-Gold Typography Scope: H1, H2 ONLY
-All other typography: Light gray or white (#E5E5E5, #F2F2F2, #FFFFFF), flat, no relief
+GOLD HIERARCHY LAW:
+- PERMITTED ONLY on H1 and H2
+- FORBIDDEN on: buttons, navigation, icons, cards, borders, containers, shadows, dividers, accents, UI chrome
 
-Gold Typography Rules (Haptic Relief - Positive Relief):
-Appears raised above surface
-Monolithic, sculptural glyphs
-Tall letterforms
-Clear specular highlight ridge
-Defined engraved shadow edge
-NOT: flat color, glow, neon, gradient wash, soft shadow
+Gold Specification:
+- Highlight: #FFD700
+- Edge: #9A7B00
+- Cut: #4A3800
+- Appearance: raised, engraved, metallic, high contrast on #121212, instantly legible
 
-Gold Color Specification:
-Highlight: near #FFD700
-Body: true metallic gold
-Edge: near #9A7B00
-Deep cut: near #4A3800
-No amber, orange, bronze
+INVALID GOLD (AUTO-FAIL):
+- Brown, amber, bronze, muddy yellow
+- Low contrast, glow, neon, gradient wash
 
-Font Families:
-System or geometric sans-serif
-Gold text weight: 700-800
-Other text: existing weights
+DEPTH HIERARCHY LAW:
+1. ENGRAVED (Law/Structure): Inset shadows only
+2. RAISED (Action): External sculpted shadow
+3. PRESSED (Confirmation): Deep inset, locked
 
-Contrast Requirements:
-Gold text must be immediately legible on charcoal
-All text must meet WCAG AA contrast ratios
+Flat UI: FORBIDDEN
+Glassmorphism: FORBIDDEN
+Blur: FORBIDDEN
+Transparency: FORBIDDEN
 
-INTERACTION BEHAVIOR
-Hover: No color change for gold text, relief may intensify slightly, no glow
-Active/Pressed: Relief depth may increase, gold tone unchanged
+MICRO-INTERACTION LAW:
+- No color change on hover
+- No glow, bloom, pulse, bounce
+- Hover = light sweep perception only
+- Pressed = inset depth, mechanical confirmation
+- All interactions: industrial, intentional, physical
 
-LAYOUT INVARIANTS
-Layout: Unchanged
-Routing: Unchanged
-Navigation: Unchanged
-Component Hierarchy: Unchanged
+IMAGERY LAW:
+- Dark-toned, high-contrast
+- Industrial/documentary style
+- No white backgrounds, no marketing gloss
+- No saturated color grading, no lifestyle imagery
 
-FORBIDDEN ACTIONS
-Gold outside H1/H2
-Subtle, dark, or muddy gold
-Decorative glow
-Color experimentation
-Warm UI accents
-"Best practice" reinterpretation
+FORBIDDEN PRACTICES (AUTO-FAIL):
+1. Warm UI accents
+2. Flat shadows
+3. Gradients on base canvas
+4. Decorative effects
+5. "Modern" reinterpretations
+6. "Best practice" overrides
+7. Artistic freedom
 
-AUTHORITY RULE
-This document overrides all specifications, AI interpretations, developer preferences
-If implementation conflicts with this document, it must be corrected
+AUTHORITY CLAUSE:
+This DNA overrides all AI defaults, interpretations, design trends, developer preferences, and usability arguments. Every pixel must feel forged, not styled.

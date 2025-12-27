@@ -1,109 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ADONNOW TRADING TERMINAL - Design System
-   Haptic Neumorphic Mineral Trading Interface
-   All colors MUST be HSL - Charcoal gradient system only
-   GOLD ONLY FOR H1, H2 - All other text light gray/white */
+/* ADONNOW TRADING TERMINAL - Manufacturing Specification
+   Industrial Mineral Trading Interface
+   Canvas: #121212 | Text: #B0B0B0 | Gold: H1/H2 ONLY */
 
 @layer base {
   :root {
-    /* 5-Tier Depth System */
-    --depth-void: 0 0% 3%;
-    --depth-1: 0 0% 5%;
-    --depth-2: 0 0% 8%;
-    --depth-3: 0 0% 12%;
-    --depth-4: 0 0% 15%;
-    --depth-5: 0 0% 18%;
+    /* CANVAS LAW - #121212 absolute void */
+    --canvas: 0 0% 7%;
+    --canvas-hex: #121212;
+    
+    /* Depth States */
+    --depth-engraved: 0 0% 5%;
+    --depth-raised: 0 0% 10%;
+    --depth-pressed: 0 0% 3%;
     
     /* Semantic mappings */
-    --background: var(--depth-void);
-    --foreground: 0 0% 90%;
+    --background: var(--canvas);
+    --foreground: 0 0% 69%;
     
-    --card: var(--depth-2);
-    --card-foreground: 0 0% 90%;
+    --card: var(--depth-engraved);
+    --card-foreground: 0 0% 69%;
     
-    --popover: var(--depth-3);
-    --popover-foreground: 0 0% 90%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 69%;
     
-    --primary: 0 0% 18%;
-    --primary-foreground: 0 0% 95%;
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 69%;
     
-    --secondary: var(--depth-2);
-    --secondary-foreground: 0 0% 80%;
+    --secondary: var(--depth-engraved);
+    --secondary-foreground: 0 0% 60%;
     
-    --muted: var(--depth-1);
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 50%;
     
-    --accent: var(--depth-3);
-    --accent-foreground: 0 0% 90%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 69%;
     
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 95%;
     
-    --border: 0 0% 10%;
-    --input: var(--depth-1);
+    --border: 0 0% 15%;
+    --input: var(--depth-engraved);
     --ring: 0 0% 20%;
     
     --radius: 18px;
     
-    /* Text colors - Light gray/white ONLY (no gold outside H1/H2) */
-    --text-primary: 0 0% 95%;
-    --text-secondary: 0 0% 80%;
-    --text-muted: 0 0% 60%;
-    --text-highlight: 0 0% 100%;
+    /* TYPOGRAPHY LAW - Default #B0B0B0 */
+    --text-primary: 0 0% 69%;
+    --text-secondary: 0 0% 55%;
+    --text-muted: 0 0% 45%;
+    --text-highlight: 0 0% 85%;
     
-    /* Gold typography - ONLY FOR H1 AND H2 */
+    /* GOLD HIERARCHY - H1/H2 ONLY */
     --gold-highlight: #FFD700;
     --gold-body: #FFD700;
     --gold-edge: #9A7B00;
     --gold-cut: #4A3800;
     
-    /* Neumorphic shadows */
-    --shadow-raised-light: -4px -4px 8px hsl(0 0% 12%);
-    --shadow-raised-dark: 4px 4px 8px hsl(0 0% 2%);
-    --shadow-floating-light: -12px -12px 24px hsl(0 0% 15%);
-    --shadow-floating-dark: 12px 12px 24px hsl(0 0% 3%);
-    --shadow-hero-light: -24px -24px 48px hsl(0 0% 18%);
-    --shadow-hero-dark: 24px 24px 48px hsl(0 0% 1%);
-    
-    /* Haptic text shadows - for non-gold text */
-    --text-relief-1: 0.5px 0.5px 1px hsl(0 0% 0%), -0.5px -0.5px 1px hsl(0 0% 20%);
-    --text-relief-2: 1px 1px 2px hsl(0 0% 0%), -1px -1px 2px hsl(0 0% 20%);
-    --text-relief-3: 2px 2px 4px hsl(0 0% 0%), -2px -2px 4px hsl(0 0% 24%);
-    
-    /* Gradients */
-    --gradient-tier-1: linear-gradient(145deg, hsl(0 0% 8%), hsl(0 0% 5%));
-    --gradient-tier-2: linear-gradient(145deg, hsl(0 0% 12%), hsl(0 0% 8%));
-    --gradient-tier-3: linear-gradient(145deg, hsl(0 0% 5%), hsl(0 0% 3%));
-    --gradient-tier-4: linear-gradient(145deg, hsl(0 0% 15%), hsl(0 0% 8%));
-    --gradient-logo: linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 4%), hsl(0 0% 20%));
+    /* DEPTH HIERARCHY - Industrial shadows */
+    --shadow-engraved: inset 2px 2px 6px hsl(0 0% 3%), inset -1px -1px 4px hsl(0 0% 12%);
+    --shadow-raised: 3px 3px 8px hsl(0 0% 3%), -2px -2px 6px hsl(0 0% 14%);
+    --shadow-pressed: inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%);
     
     /* Spacing */
     --thumb-target: 52px;
     --safe-margin: 16px;
-    --sidebar-width: 280px;
     --topbar-height: 72px;
     --dock-height: 80px;
     
     /* Sidebar */
-    --sidebar-background: var(--depth-1);
-    --sidebar-foreground: 0 0% 80%;
-    --sidebar-primary: 0 0% 18%;
-    --sidebar-primary-foreground: 0 0% 95%;
-    --sidebar-accent: var(--depth-2);
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 10%;
+    --sidebar-background: var(--depth-engraved);
+    --sidebar-foreground: 0 0% 60%;
+    --sidebar-primary: 0 0% 15%;
+    --sidebar-primary-foreground: 0 0% 69%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 69%;
+    --sidebar-border: 0 0% 15%;
     --sidebar-ring: 0 0% 20%;
   }
 
   .dark {
-    /* Dark mode is the only mode - same as root */
-    --background: var(--depth-void);
-    --foreground: 0 0% 90%;
+    --background: var(--canvas);
+    --foreground: 0 0% 69%;
   }
 }
 
@@ -118,19 +99,19 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 5%));
+    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: hsl(var(--canvas));
     min-height: 100vh;
   }
   
-  /* Haptic Typography - All headings use Playfair Display */
+  /* FONT LAW - Industrial, geometric */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
   }
   
   /* GOLD HAPTIC TYPOGRAPHY - H1 and H2 ONLY
-     Bright metallic engraving appearance
-     Raised, embossed like gold bar lettering */
+     Metallic engraving, raised, high contrast on #121212 */
   h1, h2 {
     color: var(--gold-body);
     background: none;
@@ -140,131 +121,117 @@
       0 5px 3px var(--gold-cut),
       0 0 2px rgba(0,0,0,1);
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     filter: saturate(120%) contrast(125%);
-    /* Prohibition rules */
     box-shadow: none;
     border: none;
     outline: none;
     -webkit-text-fill-color: var(--gold-body);
   }
   
-  /* H3 and below - Light gray/white, NO GOLD */
+  /* H3+ - #B0B0B0, flat, no relief */
   h3, h4, h5, h6 {
     color: hsl(var(--text-highlight));
-    text-shadow: var(--text-relief-2);
     -webkit-text-fill-color: hsl(var(--text-highlight));
+    text-shadow: none;
   }
   
-  /* All other text - Light gray/white, flat, no relief */
+  /* All other text - #B0B0B0 */
   p, span, a, label, li, button, input, textarea, select {
     color: hsl(var(--text-primary));
   }
 }
 
 @layer components {
-  /* Neumorphic Elevation Classes */
+  /* DEPTH HIERARCHY - Three states only */
+  
+  /* ENGRAVED - Structure/Law */
+  .depth-engraved {
+    background: hsl(var(--depth-engraved));
+    box-shadow: var(--shadow-engraved);
+    border-radius: var(--radius);
+  }
+  
+  /* RAISED - Action */
+  .depth-raised {
+    background: hsl(var(--depth-raised));
+    box-shadow: var(--shadow-raised);
+    border-radius: var(--radius);
+  }
+  
+  /* PRESSED - Confirmation */
+  .depth-pressed {
+    background: hsl(var(--depth-pressed));
+    box-shadow: var(--shadow-pressed);
+    border-radius: var(--radius);
+  }
+  
+  /* Legacy neumorphic classes mapped to new system */
   .neu-raised {
-    background: var(--gradient-tier-1);
-    box-shadow: 
-      var(--shadow-raised-light),
-      var(--shadow-raised-dark),
-      inset 0 0 0 0.5px hsl(0 0% 10%);
+    background: hsl(var(--depth-raised));
+    box-shadow: var(--shadow-raised);
     border-radius: var(--radius);
   }
   
   .neu-floating {
-    background: var(--gradient-tier-2);
+    background: hsl(0 0% 10%);
     box-shadow: 
-      var(--shadow-floating-light),
-      var(--shadow-floating-dark),
-      0 20px 40px rgba(0,0,0,0.4),
-      inset 0 0 0 1px hsl(0 0% 14%);
+      4px 4px 12px hsl(0 0% 3%),
+      -3px -3px 8px hsl(0 0% 15%);
     border-radius: var(--radius);
   }
   
   .neu-sunken {
-    background: var(--gradient-tier-3);
-    box-shadow: 
-      inset -4px -4px 8px hsl(0 0% 12%),
-      inset 4px 4px 8px hsl(0 0% 2%),
-      0 0 0 1px hsl(0 0% 8%);
+    background: hsl(var(--depth-pressed));
+    box-shadow: var(--shadow-pressed);
     border-radius: var(--radius);
   }
   
   .neu-hero {
-    background: var(--gradient-tier-4);
+    background: hsl(0 0% 12%);
     box-shadow: 
-      var(--shadow-hero-light),
-      var(--shadow-hero-dark),
-      0 40px 80px rgba(0,0,0,0.5),
-      inset 0 0 0 1px hsl(0 0% 16%);
+      5px 5px 15px hsl(0 0% 2%),
+      -3px -3px 10px hsl(0 0% 16%);
     border-radius: var(--radius);
   }
   
-  /* Haptic Text Classes - Light gray/white only */
-  .haptic-text-1 {
-    text-shadow: var(--text-relief-1);
-  }
-  
-  .haptic-text-2 {
-    text-shadow: var(--text-relief-2);
-  }
-  
-  .haptic-text-3 {
-    text-shadow: var(--text-relief-3);
-  }
-  
-  /* Logo styling with flipped NN - uses charcoal gradient */
+  /* Logo styling - industrial */
   .logo-text {
-    font-family: 'Playfair Display', serif;
+    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 700;
-    background: var(--gradient-logo);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-    filter: drop-shadow(3px 3px 4px hsl(0 0% 0%)) drop-shadow(-2px -2px 4px hsl(0 0% 24%));
+    color: hsl(var(--text-highlight));
+    letter-spacing: 0.1em;
   }
   
   .logo-nn-flipped {
     display: inline-block;
     transform: scaleX(-1);
-    mix-blend-mode: hard-light;
-    opacity: 0.7;
   }
   
-  /* Overlay for popups - Tier 5 */
+  /* Overlay for popups */
   .popup-overlay {
-    background: rgba(0, 0, 0, 0.85);
-    /* No blur - forbidden by design system */
+    background: rgba(0, 0, 0, 0.9);
   }
   
   /* Mobile dock container */
   .mobile-dock {
     height: var(--dock-height);
-    background: var(--gradient-tier-2);
-    box-shadow: 
-      0 -12px 24px hsl(0 0% 15%),
-      0 -4px 8px hsl(0 0% 3%),
-      inset 0 1px 0 hsl(0 0% 14%);
+    background: hsl(var(--depth-engraved));
+    box-shadow: var(--shadow-engraved);
   }
   
   /* Desktop command bar */
   .command-bar {
     height: var(--topbar-height);
-    background: var(--gradient-tier-2);
-    box-shadow: 
-      0 12px 24px hsl(0 0% 3%),
-      inset 0 -1px 0 hsl(0 0% 14%);
+    background: hsl(var(--depth-engraved));
+    box-shadow: var(--shadow-engraved);
   }
 }
 
 @layer utilities {
-  /* Spring animation utilities */
+  /* MICRO-INTERACTION LAW - Industrial, intentional */
   .spring-press {
-    transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
   }
   
   .spring-press:active {

@@ -2,132 +2,77 @@ import { motion } from "framer-motion";
 import Logo from "@/components/Logo";
 import DepthContainer from "@/components/DepthContainer";
 import NeuButton from "@/components/NeuButton";
-import { ArrowRight, Globe, Users, Award, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-const timeline = [
-  { year: "2010", event: "Founded in Nairobi, Kenya" },
-  { year: "2015", event: "Expanded to international markets" },
-  { year: "2018", event: "Achieved LME certification" },
-  { year: "2022", event: "Launched blockchain traceability" },
-  { year: "2024", event: "Serving 50+ global clients" },
-];
 
 const WhoWeAre = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Hero - H1 gets gold */}
+    <div className="min-h-screen bg-canvas pt-20 md:pt-28 pb-24 md:pb-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <h1 className="font-heading text-4xl md:text-5xl mb-4">
             Who We Are
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
-            A legacy of excellence in mineral trading, bridging African resources 
-            with global markets through ethical practices and unmatched expertise.
-          </p>
         </motion.div>
 
-        {/* Philosophy */}
+        {/* Content */}
         <motion.section
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
-          <DepthContainer tier={4} className="p-8 md:p-12">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                {/* H2 gets gold */}
-                <h2 className="font-heading text-3xl mb-4">
-                  Our Philosophy
-                </h2>
-                <p className="text-text-secondary font-body mb-4">
-                  At Adonnow Trading Limited, we believe that mineral trading is more 
-                  than commerce—it's a responsibility. Every transaction represents 
-                  a commitment to ethical sourcing, community development, and 
-                  environmental stewardship.
-                </p>
-                <p className="text-text-muted font-body">
-                  From the mines of Tanzania to the trading floors of London and 
-                  Shanghai, we maintain the highest standards of integrity and 
-                  transparency.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: Globe, label: "Global Reach" },
-                  { icon: Users, label: "Expert Team" },
-                  { icon: Award, label: "Certified" },
-                  { icon: TrendingUp, label: "Growth" },
-                ].map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <DepthContainer key={i} tier={2} className="p-4 text-center">
-                      <Icon className="mx-auto text-text-highlight mb-2" size={28} />
-                      <span className="text-text-secondary font-body text-sm">
-                        {item.label}
-                      </span>
-                    </DepthContainer>
-                  );
-                })}
-              </div>
+          <DepthContainer depth="engraved" className="p-8 md:p-12">
+            <h2 className="font-heading text-2xl md:text-3xl mb-6">
+              Adonnow Trading Limited
+            </h2>
+            
+            <div className="space-y-6 text-text-primary font-body">
+              <p>
+                Adonnow Trading Limited is a Nairobi-based mineral trading company specializing in the 
+                export of strategic commodities from East Africa to international markets.
+              </p>
+              
+              <p>
+                Our operations encompass the sourcing, verification, and facilitation of trade in 
+                copper cathodes, tantalum ore (coltan), refined gold, and Tanzanian gemstones. 
+                We maintain direct relationships with verified mining operations and certified 
+                processing facilities across the region.
+              </p>
+              
+              <p>
+                The company serves institutional buyers, industrial consumers, and commodity traders 
+                requiring reliable access to African mineral resources. All transactions adhere to 
+                international compliance standards and regional export regulations.
+              </p>
+              
+              <p className="text-text-secondary">
+                Headquarters: Nairobi, Kenya<br />
+                Trading Desk: +254 707 513 272<br />
+                Correspondence: adonnowtrading@gmail.com
+              </p>
             </div>
           </DepthContainer>
-        </motion.section>
-
-        {/* Timeline */}
-        <motion.section
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          {/* H2 gets gold */}
-          <h2 className="font-heading text-2xl mb-8 text-center">
-            Our Journey
-          </h2>
-          <div className="space-y-4">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <DepthContainer tier={1} className="p-4 flex items-center gap-4">
-                  {/* Year - no gold, just highlight */}
-                  <span className="font-heading text-xl text-text-highlight">
-                    {item.year}
-                  </span>
-                  <div className="h-px flex-1 bg-depth-3" />
-                  <span className="text-text-secondary font-body">
-                    {item.event}
-                  </span>
-                </DepthContainer>
-              </motion.div>
-            ))}
-          </div>
         </motion.section>
 
         {/* CTA */}
         <div className="text-center">
           <NeuButton
-            variant="hero"
+            variant="raised"
             size="lg"
             icon={<ArrowRight size={18} />}
             iconPosition="right"
             onClick={() => navigate("/our-vision")}
           >
-            Discover Our Vision
+            Our Vision
           </NeuButton>
         </div>
       </div>

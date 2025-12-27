@@ -36,7 +36,7 @@ export const MobileDock = () => {
                 className={cn(
                   "flex flex-col items-center justify-center h-full gap-1",
                   "transition-colors touch-target",
-                  isActive ? "gold-text-subtle" : "text-text-secondary"
+                  isActive ? "text-text-highlight" : "text-text-secondary"
                 )}
                 whileTap={{
                   y: 2,
@@ -54,7 +54,7 @@ export const MobileDock = () => {
                 >
                   <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />
                 </motion.div>
-                <span className="text-xs font-body haptic-text-1">
+                <span className="text-xs font-body">
                   {item.label}
                 </span>
               </motion.div>

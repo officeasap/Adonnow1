@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import DepthContainer from "@/components/DepthContainer";
 import NeuButton from "@/components/NeuButton";
-import { Phone, Mail, MapPin, Send, Building, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Clock } from "lucide-react";
 import { toast } from "sonner";
 
 const contactMethods = [
@@ -16,14 +16,14 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "trade@adonnow.com",
-    href: "mailto:trade@adonnow.com",
+    value: "adonnowtrading@gmail.com",
+    href: "mailto:adonnowtrading@gmail.com",
     description: "Response within 24 hours",
   },
   {
     icon: MapPin,
     label: "Headquarters",
-    value: "Nairobi, Kenya",
+    value: "PO BOX 667-00523 Nairobi",
     href: "#",
     description: "East Africa Hub",
   },
@@ -74,17 +74,17 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Hero */}
+        {/* Hero - H1 gets gold */}
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-heading text-4xl md:text-5xl text-text-highlight mb-4">
-            Contact Sanctum
+          <h1 className="font-heading text-4xl md:text-5xl mb-4">
+            Contact Us
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto haptic-text-1">
+          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
             Begin your journey with Adonnow. Our trading desk is ready to assist 
             with your mineral sourcing requirements.
           </p>
@@ -110,16 +110,16 @@ const Contact = () => {
                 >
                   <DepthContainer tier={2} className="p-5 flex items-center gap-4 hover:scale-[1.02] transition-transform">
                     <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center">
-                      <Icon className="text-gold-light" size={22} />
+                      <Icon className="text-text-highlight" size={22} />
                     </div>
                     <div>
-                      <span className="block text-text-muted font-body text-xs uppercase tracking-wider haptic-text-1">
+                      <span className="block text-text-muted font-body text-xs uppercase tracking-wider">
                         {method.label}
                       </span>
-                      <span className="block text-text-highlight font-heading text-lg haptic-text-2">
+                      <span className="block text-text-highlight font-heading text-lg">
                         {method.value}
                       </span>
-                      <span className="block text-text-secondary font-body text-xs haptic-text-1">
+                      <span className="block text-text-secondary font-body text-xs">
                         {method.description}
                       </span>
                     </div>
@@ -132,11 +132,11 @@ const Contact = () => {
             <DepthContainer tier={1} className="p-5">
               <div className="flex items-center gap-3 mb-3">
                 <Clock className="text-text-highlight" size={18} />
-                <span className="text-text-secondary font-body text-sm uppercase tracking-wider haptic-text-1">
+                <span className="text-text-secondary font-body text-sm uppercase tracking-wider">
                   Trading Hours
                 </span>
               </div>
-              <p className="text-text-muted font-body text-sm haptic-text-1">
+              <p className="text-text-muted font-body text-sm">
                 Monday - Friday: 08:00 - 18:00 EAT<br />
                 24/7 Emergency Line Available
               </p>
@@ -151,14 +151,14 @@ const Contact = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <DepthContainer tier={4} className="p-6 md:p-8">
-              {/* Step Indicator */}
+              {/* Step Indicator - no gold */}
               <div className="flex items-center justify-between mb-8">
                 {[1, 2, 3].map((s) => (
                   <div key={s} className="flex items-center flex-1">
                     <motion.div
                       className={`w-10 h-10 rounded-[18px] flex items-center justify-center font-heading text-lg ${
                         s <= step
-                          ? "neu-hero gold-text-subtle"
+                          ? "neu-hero text-text-highlight"
                           : "neu-sunken text-text-muted"
                       }`}
                       animate={s === step ? { scale: [1, 1.05, 1] } : {}}
@@ -184,12 +184,13 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                 >
-                  <h3 className="font-heading text-xl text-text-highlight mb-6 haptic-text-2">
+                  {/* H3 - white, not gold */}
+                  <h3 className="font-heading text-xl mb-6">
                     Your Details
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                      <label className="block text-text-secondary font-body text-sm mb-2">
                         Full Name *
                       </label>
                       <input
@@ -202,7 +203,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                      <label className="block text-text-secondary font-body text-sm mb-2">
                         Company
                       </label>
                       <input
@@ -216,7 +217,7 @@ const Contact = () => {
                     </div>
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                        <label className="block text-text-secondary font-body text-sm mb-2">
                           Email *
                         </label>
                         <input
@@ -229,7 +230,7 @@ const Contact = () => {
                         />
                       </div>
                       <div>
-                        <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                        <label className="block text-text-secondary font-body text-sm mb-2">
                           Phone
                         </label>
                         <input
@@ -253,12 +254,13 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                 >
-                  <h3 className="font-heading text-xl text-text-highlight mb-6 haptic-text-2">
+                  {/* H3 - white, not gold */}
+                  <h3 className="font-heading text-xl mb-6">
                     Mineral Interest
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                      <label className="block text-text-secondary font-body text-sm mb-2">
                         Select Mineral *
                       </label>
                       <select
@@ -281,7 +283,7 @@ const Contact = () => {
                             type="button"
                             className={`p-4 rounded-[18px] text-left transition-all ${
                               formData.mineral.toLowerCase() === m.toLowerCase()
-                                ? "neu-sunken gold-text-subtle"
+                                ? "neu-sunken text-text-highlight"
                                 : "neu-raised text-text-secondary hover:text-text-primary"
                             }`}
                           onClick={() =>
@@ -292,7 +294,7 @@ const Contact = () => {
                           }
                           whileTap={{ scale: 0.98 }}
                         >
-                          <span className="font-heading text-sm haptic-text-1">{m}</span>
+                          <span className="font-heading text-sm">{m}</span>
                         </motion.button>
                       ))}
                     </div>
@@ -307,11 +309,12 @@ const Contact = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                 >
-                  <h3 className="font-heading text-xl text-text-highlight mb-6 haptic-text-2">
+                  {/* H3 - white, not gold */}
+                  <h3 className="font-heading text-xl mb-6">
                     Your Message
                   </h3>
                   <div>
-                    <label className="block text-text-secondary font-body text-sm mb-2 haptic-text-1">
+                    <label className="block text-text-secondary font-body text-sm mb-2">
                       Tell us about your requirements *
                     </label>
                     <textarea

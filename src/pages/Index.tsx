@@ -79,20 +79,20 @@ const Index = () => {
               {/* Logo */}
               <div className="mb-6">
                 <Logo size="xl" />
-                <p className="mt-2 text-text-secondary font-body text-sm uppercase tracking-[0.3em] haptic-text-1">
+                <p className="mt-2 text-text-secondary font-body text-sm uppercase tracking-[0.3em]">
                   Trading Limited
                 </p>
               </div>
 
-              {/* Headline */}
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-text-highlight leading-tight mb-6">
+              {/* Headline - H1 gets gold styling */}
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
                 Where Earth's Treasures
                 <br />
-                <span className="text-text-secondary">Meet Global Markets</span>
+                Meet Global Markets
               </h1>
 
-              {/* Subheadline */}
-              <p className="text-text-secondary font-body text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0 haptic-text-1">
+              {/* Subheadline - Light gray, no gold */}
+              <p className="text-text-secondary font-body text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0">
                 Your trusted gateway to ethically sourced minerals. 
                 From Tanzanian depths to international markets.
               </p>
@@ -132,32 +132,32 @@ const Index = () => {
                   className="h-64 md:h-80 mb-6"
                 />
 
-                {/* Mineral Info */}
+                {/* Mineral Info - H3 gets white styling, not gold */}
                 <motion.div
                   key={currentMineral}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <h3 className="font-heading text-2xl text-text-highlight mb-1 haptic-text-2">
+                  <h3 className="font-heading text-2xl mb-1">
                     {minerals[currentMineral].name}
                   </h3>
-                  <p className="text-text-primary font-body text-sm uppercase tracking-wider mb-2 haptic-text-1">
+                  <p className="text-text-primary font-body text-sm uppercase tracking-wider mb-2">
                     {minerals[currentMineral].tagline}
                   </p>
-                  <p className="text-text-muted font-body text-sm haptic-text-1">
+                  <p className="text-text-muted font-body text-sm">
                     {minerals[currentMineral].description}
                   </p>
                 </motion.div>
 
-                {/* Mineral Selector */}
+                {/* Mineral Selector - No gold */}
                 <div className="flex gap-3 mt-6">
                   {minerals.map((mineral, index) => (
                     <motion.button
                       key={mineral.type}
                       className={`flex-1 py-3 rounded-[18px] text-xs font-body uppercase tracking-wider transition-all ${
                         index === currentMineral
-                          ? "neu-sunken gold-text-subtle"
+                          ? "neu-sunken text-text-highlight"
                           : "neu-raised text-text-secondary hover:text-text-primary"
                       }`}
                       onClick={() => setCurrentMineral(index)}
@@ -183,10 +183,11 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="font-heading text-3xl md:text-4xl text-text-highlight mb-4">
+            {/* H2 gets gold styling */}
+            <h2 className="font-heading text-3xl md:text-4xl mb-4">
               The Adonnow Advantage
             </h2>
-            <p className="text-text-secondary font-body max-w-2xl mx-auto haptic-text-1">
+            <p className="text-text-secondary font-body max-w-2xl mx-auto">
               Decades of expertise bridging African mineral wealth with global demand
             </p>
           </motion.div>
@@ -206,10 +207,11 @@ const Index = () => {
                     <div className="neu-raised w-14 h-14 rounded-[18px] flex items-center justify-center mb-6">
                       <Icon className="text-text-highlight" size={28} />
                     </div>
-                    <h3 className="font-heading text-xl text-text-highlight mb-3 haptic-text-2">
+                    {/* H3 - white, not gold */}
+                    <h3 className="font-heading text-xl mb-3">
                       {feature.title}
                     </h3>
-                    <p className="text-text-secondary font-body haptic-text-1">
+                    <p className="text-text-secondary font-body">
                       {feature.description}
                     </p>
                   </DepthContainer>
@@ -224,10 +226,11 @@ const Index = () => {
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-4xl mx-auto">
           <DepthContainer tier={4} className="p-8 md:p-12 text-center">
-            <h2 className="font-heading text-3xl md:text-4xl text-text-highlight mb-4">
+            {/* H2 gets gold styling */}
+            <h2 className="font-heading text-3xl md:text-4xl mb-4">
               Ready to Trade?
             </h2>
-            <p className="text-text-secondary font-body text-lg mb-8 max-w-xl mx-auto haptic-text-1">
+            <p className="text-text-secondary font-body text-lg mb-8 max-w-xl mx-auto">
               Connect with our Nairobi trading desk for premium mineral sourcing 
               and competitive pricing.
             </p>
@@ -257,10 +260,10 @@ const Index = () => {
       <footer className="py-8 px-4 border-t border-depth-2">
         <div className="max-w-6xl mx-auto text-center">
           <Logo size="sm" />
-          <p className="mt-4 text-text-muted font-body text-sm haptic-text-1">
+          <p className="mt-4 text-text-muted font-body text-sm">
             © {new Date().getFullYear()} Adonnow Trading Limited. All rights reserved.
           </p>
-          <p className="mt-2 text-text-muted font-body text-xs haptic-text-1">
+          <p className="mt-2 text-text-muted font-body text-xs">
             Nairobi, Kenya | Global Mineral Trading
           </p>
         </div>

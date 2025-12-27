@@ -43,17 +43,17 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Hero */}
+        {/* Hero - H1 gets gold */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-heading text-4xl md:text-5xl text-text-highlight mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl mb-4">
             Our Services
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto haptic-text-1">
+          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
             Comprehensive solutions for every stage of your mineral trading journey, 
             from sourcing to delivery.
           </p>
@@ -79,19 +79,20 @@ const Services = () => {
                 >
                   <DepthContainer tier={2} className="p-6 h-full flex flex-col">
                     <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center mb-4">
-                      <Icon className="text-gold-light" size={24} />
+                      <Icon className="text-text-highlight" size={24} />
                     </div>
-                    <h3 className="font-heading text-lg text-text-highlight mb-2 haptic-text-2">
+                    {/* H3 - white, not gold */}
+                    <h3 className="font-heading text-lg mb-2">
                       {service.title}
                     </h3>
-                    <p className="text-text-secondary font-body text-sm mb-4 flex-grow haptic-text-1">
+                    <p className="text-text-secondary font-body text-sm mb-4 flex-grow">
                       {service.description}
                     </p>
                     <ul className="space-y-1">
                       {service.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-center gap-2 text-text-muted font-body text-xs haptic-text-1"
+                          className="flex items-center gap-2 text-text-muted font-body text-xs"
                         >
                           <div className="w-1 h-1 rounded-full bg-depth-5" />
                           {feature}
@@ -112,10 +113,11 @@ const Services = () => {
           transition={{ delay: 0.4, duration: 0.5 }}
         >
           <DepthContainer tier={4} className="p-8 text-center">
-            <h2 className="font-heading text-2xl text-text-highlight mb-4 haptic-text-2">
+            {/* H2 gets gold */}
+            <h2 className="font-heading text-2xl mb-4">
               Ready to Get Started?
             </h2>
-            <p className="text-text-secondary font-body mb-6 max-w-xl mx-auto haptic-text-1">
+            <p className="text-text-secondary font-body mb-6 max-w-xl mx-auto">
               Contact our team to discuss how we can support your mineral trading objectives.
             </p>
             <NeuButton

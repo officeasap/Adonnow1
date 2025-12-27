@@ -33,17 +33,17 @@ const OurVision = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-depth-void to-depth-1 pt-20 md:pt-28 pb-24 md:pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Hero */}
+        {/* Hero - H1 gets gold */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="font-heading text-4xl md:text-5xl text-text-highlight mb-4">
+          <h1 className="font-heading text-4xl md:text-5xl mb-4">
             Our Vision
           </h1>
-          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto haptic-text-1">
+          <p className="text-text-secondary font-body text-lg max-w-2xl mx-auto">
             Shaping the future of ethical mineral trading through innovation, 
             sustainability, and unwavering commitment to excellence.
           </p>
@@ -57,14 +57,15 @@ const OurVision = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <DepthContainer tier={4} className="p-8 md:p-12 text-center">
-            <span className="text-text-muted font-body text-sm uppercase tracking-widest haptic-text-1">
+            <span className="text-text-muted font-body text-sm uppercase tracking-widest">
               Vision 2030
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl text-text-highlight mt-4 mb-6 haptic-text-3">
+            {/* H2 gets gold */}
+            <h2 className="font-heading text-3xl md:text-4xl mt-4 mb-6">
               "To be the world's most trusted bridge between 
               African mineral wealth and global markets"
             </h2>
-            <p className="text-text-secondary font-body max-w-2xl mx-auto haptic-text-1">
+            <p className="text-text-secondary font-body max-w-2xl mx-auto">
               Every mineral we trade represents our commitment to transforming 
               the industry through transparency, technology, and trust.
             </p>
@@ -78,7 +79,8 @@ const OurVision = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <h2 className="font-heading text-2xl text-text-highlight mb-8 text-center haptic-text-2">
+          {/* H2 gets gold */}
+          <h2 className="font-heading text-2xl mb-8 text-center">
             Strategic Pillars
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -95,13 +97,14 @@ const OurVision = () => {
                   <DepthContainer tier={2} className="p-6 h-full">
                     <div className="flex gap-4">
                       <div className="neu-raised w-12 h-12 rounded-[18px] flex items-center justify-center flex-shrink-0">
-                        <Icon className="text-gold-light" size={24} />
+                        <Icon className="text-text-highlight" size={24} />
                       </div>
                       <div>
-                        <h3 className="font-heading text-lg text-text-highlight mb-2 haptic-text-2">
+                        {/* H3 - white, not gold */}
+                        <h3 className="font-heading text-lg mb-2">
                           {pillar.title}
                         </h3>
-                        <p className="text-text-secondary font-body text-sm haptic-text-1">
+                        <p className="text-text-secondary font-body text-sm">
                           {pillar.description}
                         </p>
                       </div>

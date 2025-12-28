@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { forwardRef, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type NeuButtonVariant = "raised" | "engraved" | "pressed";
+type NeuButtonVariant = "raised" | "engraved" | "pressed" | "hero";
 type NeuButtonSize = "sm" | "md" | "lg" | "xl";
 
 interface NeuButtonProps {
@@ -21,6 +21,7 @@ const variantStyles: Record<NeuButtonVariant, string> = {
   raised: "depth-raised",
   engraved: "depth-engraved",
   pressed: "depth-pressed",
+   hero: "neu-hero", // Added hero variant
 };
 
 const sizeStyles: Record<NeuButtonSize, string> = {
@@ -44,41 +45,40 @@ export const NeuButton = forwardRef<HTMLButtonElement, NeuButtonProps>(
       type = "button",
     },
     ref
-  ) => {
-    return (
-      <motion.button
-        ref={ref}
-        type={type}
-        disabled={disabled}
-        onClick={onClick}
-        className={cn(
-          "relative inline-flex items-center justify-center gap-3 font-body font-medium",
-          "rounded-[18px] cursor-pointer touch-target",
-          "transition-all duration-100 ease-out",
-          "disabled:opacity-50 disabled:cursor-not-allowed",
-          "text-text-primary",
-          variantStyles[variant],
-          sizeStyles[size],
-          className
-        )}
-        whileTap={!disabled ? {
-          y: 1,
-          boxShadow: "inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%)",
-        } : undefined}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
-      >
-        {icon && iconPosition === "left" && (
-          <span className="flex-shrink-0">{icon}</span>
-        )}
-        {children}
-        {icon && iconPosition === "right" && (
-          <span className="flex-shrink-0">{icon}</span>
-        )}
-      </motion.button>
-    );
-  }
+  ) => (
+    <motion.button
+      ref={ref}
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(
+        "relative inline-flex items-center justify-center gap-3 font-body font-medium",
+        "rounded-[18px] cursor-pointer touch-target",
+        "transition-all duration-100 ease-out",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
+        "text-text-primary",
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}
+      whileTap={
+        !disabled
+          ? {
+              y: 1,
+              boxShadow:
+                "inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%)",
+            }
+          : undefined
+      }
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+    >
+      {icon && iconPosition === "left" && <span className="flex-shrink-0">{icon}</span>}
+      {children}
+      {icon && iconPosition === "right" && <span className="flex-shrink-0">{icon}</span>}
+    </motion.button>
+  )
 );
 
 NeuButton.displayName = "NeuButton";

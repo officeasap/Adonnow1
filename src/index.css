@@ -2,86 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ADONNOW TRADING TERMINAL - Manufacturing Specification
+/* =========================================================
+   ADONNOW TRADING TERMINAL - Manufacturing Specification
    Industrial Mineral Trading Interface
-   Canvas: #121212 | Text: #B0B0B0 | Brand: #d4ccb5 for H1/H2 */
+========================================================= */
 
 @layer base {
   :root {
-    /* CANVAS LAW - #121212 absolute void */
+    /* CANVAS */
     --canvas: 0 0% 7%;
     --canvas-hex: #121212;
-    
-    /* Depth States */
+
+    /* DEPTH */
     --depth-engraved: 0 0% 5%;
     --depth-raised: 0 0% 10%;
     --depth-pressed: 0 0% 3%;
-    
-    /* Semantic mappings */
+
+    /* SEMANTIC */
     --background: var(--canvas);
     --foreground: 0 0% 69%;
-    
-    --card: var(--depth-engraved);
-    --card-foreground: 0 0% 69%;
-    
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 69%;
-    
-    --primary: #d4ccb5; /* brand color globally */
-    --primary-foreground: #000000;
-    
-    --secondary: var(--depth-engraved);
-    --secondary-foreground: 0 0% 60%;
-    
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 50%;
-    
-    --accent: 0 0% 12%;
-    --accent-foreground: 0 0% 69%;
-    
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 95%;
-    
     --border: 0 0% 15%;
-    --input: var(--depth-engraved);
-    --ring: 0 0% 20%;
-    
     --radius: 18px;
-    
-    /* TYPOGRAPHY LAW - Default #B0B0B0 */
-    --text-primary: #d4ccb5; /* fixed globally */
-    --text-secondary: 0 0% 55%;
-    --text-muted: 0 0% 45%;
+
+    /* TYPOGRAPHY */
+    --text-primary: #d4ccb5;
     --text-highlight: 0 0% 85%;
-    
-    /* BRAND HIERARCHY - H1/H2 ONLY */
     --brand-heading: #d4ccb5;
-    
-    /* DEPTH HIERARCHY - Industrial shadows */
-    --shadow-engraved: inset 2px 2px 6px hsl(0 0% 3%), inset -1px -1px 4px hsl(0 0% 12%);
-    --shadow-raised: 3px 3px 8px hsl(0 0% 3%), -2px -2px 6px hsl(0 0% 14%);
-    --shadow-pressed: inset 3px 3px 8px hsl(0 0% 2%), inset -1px -1px 4px hsl(0 0% 10%);
-    
-    /* Spacing */
+
+    /* DEPTH SHADOWS */
+    --shadow-engraved:
+      inset 2px 2px 6px hsl(0 0% 3%),
+      inset -1px -1px 4px hsl(0 0% 12%);
+
+    --shadow-raised:
+      3px 3px 8px hsl(0 0% 3%),
+      -2px -2px 6px hsl(0 0% 14%);
+
+    --shadow-pressed:
+      inset 3px 3px 8px hsl(0 0% 2%),
+      inset -1px -1px 4px hsl(0 0% 10%);
+
+    /* LAYOUT */
     --thumb-target: 52px;
-    --safe-margin: 16px;
     --topbar-height: 72px;
     --dock-height: 80px;
-    
-    /* Sidebar */
-    --sidebar-background: var(--depth-engraved);
-    --sidebar-foreground: 0 0% 60%;
-    --sidebar-primary: 0 0% 15%;
-    --sidebar-primary-foreground: 0 0% 69%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 0 0% 69%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 20%;
-  }
 
-  .dark {
-    --background: var(--canvas);
-    --foreground: 0 0% 69%;
+    /* =========================================================
+       MASTER CHARCOAL — PERMANENT BOTTOM LIGHT
+       INSTITUTIONAL / NON-INTERACTIVE
+    ========================================================= */
+    --ring-light-bottom:
+      0 4px 6px -2px #dfd4a2;
   }
 }
 
@@ -89,119 +60,61 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
     background: hsl(var(--canvas));
+    font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
     min-height: 100vh;
   }
-  
-  /* FONT LAW - Industrial, geometric */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 700;
-  }
-  
-  /* BRAND TYPOGRAPHY - H1 and H2 ONLY */
+
   h1, h2 {
     color: var(--brand-heading);
-    background: none;
-    text-shadow: none;
     font-weight: 800;
     letter-spacing: 0.03em;
-    box-shadow: none;
-    border: none;
-    outline: none;
-    -webkit-text-fill-color: var(--brand-heading);
   }
-  
-  /* H3+ - #B0B0B0, flat, no relief */
+
   h3, h4, h5, h6 {
     color: hsl(var(--text-highlight));
-    -webkit-text-fill-color: hsl(var(--text-highlight));
-    text-shadow: none;
   }
-  
-  /* All other text */
+
   p, span, a, label, li, button, input, textarea, select {
     color: var(--text-primary);
   }
 }
 
+/* =========================================================
+   DEPTH COMPONENTS
+========================================================= */
 @layer components {
   .depth-engraved {
     background: hsl(var(--depth-engraved));
     box-shadow: var(--shadow-engraved);
     border-radius: var(--radius);
   }
-  
+
   .depth-raised {
     background: hsl(var(--depth-raised));
     box-shadow: var(--shadow-raised);
     border-radius: var(--radius);
   }
-  
+
   .depth-pressed {
     background: hsl(var(--depth-pressed));
     box-shadow: var(--shadow-pressed);
     border-radius: var(--radius);
   }
-  
-  .neu-raised {
-    background: hsl(var(--depth-raised));
-    box-shadow: var(--shadow-raised);
-    border-radius: var(--radius);
-  }
-  
-  .neu-floating {
-    background: hsl(0 0% 10%);
-    box-shadow: 
-      4px 4px 12px hsl(0 0% 3%),
-      -3px -3px 8px hsl(0 0% 15%);
-    border-radius: var(--radius);
-  }
-  
-  .neu-sunken {
-    background: hsl(var(--depth-pressed));
-    box-shadow: var(--shadow-pressed);
-    border-radius: var(--radius);
-  }
-  
-  .neu-hero {
-    background: hsl(0 0% 12%);
-    box-shadow: 
-      5px 5px 15px hsl(0 0% 2%),
-      -3px -3px 10px hsl(0 0% 16%);
-    border-radius: var(--radius);
-  }
-  
-  .logo-text {
-    font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-weight: 700;
-    color: hsl(var(--text-highlight));
-    letter-spacing: 0.1em;
-  }
-  
-  .logo-nn-flipped {
-    display: inline-block;
-    transform: scaleX(-1);
-  }
-  
-  .popup-overlay {
-    background: rgba(0, 0, 0, 0.9);
-  }
-  
+
   .mobile-dock {
     height: var(--dock-height);
     background: hsl(var(--depth-engraved));
     box-shadow: var(--shadow-engraved);
   }
-  
+
   .command-bar {
     height: var(--topbar-height);
     background: hsl(var(--depth-engraved));
@@ -209,21 +122,72 @@
   }
 }
 
-@layer utilities {
-  .spring-press {
-    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-  }
-  
-  .spring-press:active {
-    transform: translateY(1px);
-  }
-  
-  .touch-target {
-    min-width: var(--thumb-target);
-    min-height: var(--thumb-target);
-  }
-  
-  .safe-margin {
-    margin: var(--safe-margin);
+/* =========================================================
+   GLOBAL PERMANENT UNDER-LIGHT
+   APPLIES TO ALL CONTROLS & FRAMES
+========================================================= */
+button,
+input,
+select,
+textarea,
+svg,
+nav *,
+.menu *,
+.frame *,
+[data-frame],
+[data-menu] {
+  box-shadow: var(--ring-light-bottom);
+  outline: none;
+  filter: none;
+}
+
+/* NO HOVER
+   NO ACTIVE
+   NO PRESS
+   NO MOTION */
+button:hover,
+button:active,
+button:focus,
+button:focus-visible,
+input:active,
+input:focus,
+select:active,
+select:focus,
+textarea:active,
+textarea:focus,
+svg:active,
+svg:focus {
+  box-shadow: var(--ring-light-bottom);
+  transform: none;
+}
+
+/* =========================================================
+   MOBILE FIXES
+========================================================= */
+@layer components {
+  @media (max-width: 768px) {
+    .site-logo {
+      position: fixed;
+      top: 12px;
+      left: 16px;
+      max-width: 120px;
+      z-index: 1100;
+    }
+
+    .mobile-dock {
+      position: fixed;
+      bottom: 0;
+      inset-inline: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    body {
+      padding-top: var(--topbar-height);
+      padding-bottom: var(--dock-height);
+    }
   }
 }

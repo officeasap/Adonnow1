@@ -71,12 +71,12 @@ const Index = () => {
               className="text-center lg:text-left"
             >
               <p className="mt-2 text-text-secondary text-sm uppercase tracking-[0.3em]">
-                Trading Limited
+                Adonnow Trading Limited
               </p>
 
               <h1
   className="font-heading text-5xl lg:text-6xl leading-tight mt-6 mb-6"
-  style={{ color: "#b7d1fd" }}
+  style={{ color: "#dfd4a2" }}
 >
   East African Mineral Exports
 </h1>
@@ -184,12 +184,13 @@ const Index = () => {
             </p>
             <div className="flex gap-4 justify-center">
               <NeuButton
-                variant="raised"
-                size="lg"
-                onClick={() => (window.location.href = "tel:+254707513272")}
-              >
-                +254 707 513 272
-              </NeuButton>
+  variant="raised"
+  size="lg"
+  onClick={() => navigate("/minerals")}
+>
+  View Available Minerals
+</NeuButton>
+
               <NeuButton
                 variant="engraved"
                 size="lg"

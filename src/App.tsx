@@ -3,12 +3,13 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MobileDock from "./components/MobileDock";
 import DesktopCommandBar from "./components/DesktopCommandBar";
 
-// Page placeholders for navigation
+// Pages
 import WhoWeAre from "./pages/WhoWeAre";
 import OurVision from "./pages/OurVision";
 import Expertise from "./pages/Expertise";
@@ -23,8 +24,19 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+
       <BrowserRouter>
+        {/* ✅ MOBILE FLOATING LOGO (PNG, GLOBAL) */}
+        <div className="fixed top-4 left-4 z-50 md:hidden pointer-events-auto">
+          <img
+            src="/images/LogoAdonnowOfficial.png"
+            alt="Adonnow Trading Limited"
+            className="h-9 w-auto neu-raised p-1"
+          />
+        </div>
+
         <DesktopCommandBar />
+
         <main className="pb-20 md:pb-0">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -34,10 +46,10 @@ const App = () => (
             <Route path="/minerals" element={<Minerals />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
+
         <MobileDock />
       </BrowserRouter>
     </TooltipProvider>
@@ -45,3 +57,4 @@ const App = () => (
 );
 
 export default App;
+

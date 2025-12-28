@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
 import NeuButton from "./NeuButton";
-import MineralPlaceholder from "./MineralPlaceholder";
 import PopupOverlay from "./PopupOverlay";
 import { hasSeenPopup, markPopupAsSeen } from "@/lib/cookie-management";
 
@@ -12,9 +11,24 @@ interface EntryPopupProps {
 }
 
 const minerals = [
-  { type: "coltan" as const, name: "Coltan", description: "Conflict-free tantalum ore" },
-  { type: "copper" as const, name: "Copper Cathode", description: "LME Grade A certified" },
-  { type: "tanzanite" as const, name: "Tanzanite", description: "GIA certified gemstones" },
+  {
+    type: "coltan" as const,
+    name: "Coltan",
+    description: "Conflict-free tantalum ore",
+    image: "/images/coltan1.png",
+  },
+  {
+    type: "copper" as const,
+    name: "Copper Cathode",
+    description: "LME Grade A certified",
+    image: "/images/copper1.png",
+  },
+  {
+    type: "tanzanite" as const,
+    name: "Tanzanite",
+    description: "GIA certified gemstones",
+    image: "/images/tanzanite3.png",
+  },
 ];
 
 export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
@@ -22,24 +36,19 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
   const [currentMineral, setCurrentMineral] = useState(0);
 
   useEffect(() => {
-    // Check if user has seen popup before
     if (!hasSeenPopup()) {
-      // 3-second delay as per specification
       const timer = setTimeout(() => {
         setIsOpen(true);
       }, 3000);
-
       return () => clearTimeout(timer);
     }
   }, []);
 
-  // Rotate minerals every 4 seconds
   useEffect(() => {
     if (isOpen) {
       const interval = setInterval(() => {
         setCurrentMineral((prev) => (prev + 1) % minerals.length);
       }, 4000);
-
       return () => clearInterval(interval);
     }
   }, [isOpen]);
@@ -94,10 +103,10 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
               exit={{ opacity: 0, x: -20 }}
               transition={{ type: "spring", stiffness: 200, damping: 22 }}
             >
-              <MineralPlaceholder
-                mineral={minerals[currentMineral].type}
-                className="h-40 mb-4"
-                label={minerals[currentMineral].name}
+              <img
+                src={minerals[currentMineral].image}
+                alt={minerals[currentMineral].name}
+                className="h-40 mb-4 mx-auto object-contain rounded-md shadow-md"
               />
               <p className="text-center text-text-muted font-body text-sm">
                 {minerals[currentMineral].description}
@@ -111,9 +120,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
               <motion.button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentMineral
-                    ? "bg-text-primary w-6"
-                    : "bg-depth-4"
+                  index === currentMineral ? "bg-text-primary w-6" : "bg-depth-4"
                 }`}
                 onClick={() => setCurrentMineral(index)}
                 whileHover={{ scale: 1.2 }}
@@ -123,7 +130,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
           </div>
         </div>
 
-        {/* Tagline - H3 level styling, NOT gold */}
+        {/* Tagline */}
         <h3 className="text-center font-heading text-lg mb-8">
           Your Gateway to Earth's Treasures
         </h3>
@@ -137,7 +144,7 @@ export const EntryPopup = ({ onComplete }: EntryPopupProps) => {
           icon={<ChevronRight size={20} />}
           iconPosition="right"
         >
-          Enter the Sanctum
+          Enter Adonnow Trading Limited
         </NeuButton>
       </motion.div>
     </PopupOverlay>

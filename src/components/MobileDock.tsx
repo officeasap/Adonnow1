@@ -7,14 +7,19 @@ import { useState } from "react";
 const navItems = [
   { path: "/", icon: Home, label: "Home" },
   { path: "/minerals", icon: Target, label: "Minerals" },
-  { path: "/services", icon: Briefcase, label: "Services", children: [
-      { path: "/who-we-are", label: "Who We Are" },
+  {
+    path: "/services",
+    icon: Briefcase,
+    label: "Services",
+    children: [
+      { path: "/who-we-are", label: "About-Us" },
       { path: "/our-vision", label: "Vision" },
       { path: "/expertise", label: "Expertise" },
-    ]
+    ],
   },
   { path: "/contact", icon: Phone, label: "Contact" },
 ];
+
 
 export const MobileDock = () => {
   const location = useLocation();
@@ -27,16 +32,7 @@ export const MobileDock = () => {
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
-      <div className="flex items-center justify-between h-full px-4 py-3 safe-area-inset-bottom">
-        {/* Logo */}
-        <NavLink to="/" className="flex-shrink-0 mr-4">
-          <img
-            src="/images/LogoAdonnowOfficial.png"
-            alt="Adonnow Limited Logo"
-            className="h-9 w-auto neu-raised p-1"
-          />
-        </NavLink>
-
+      <div className="flex items-center h-full px-4 py-3 safe-area-inset-bottom">
         {/* Navigation */}
         <div className="flex flex-1 items-center justify-around gap-3">
           {navItems.map((item) => {
@@ -51,7 +47,9 @@ export const MobileDock = () => {
                   onClick={(e) => {
                     if (item.children) {
                       e.preventDefault();
-                      setOpenServices(!openServices);
+                      setOpenServices((prev) => !prev);
+                    } else {
+                      setOpenServices(false);
                     }
                   }}
                 >
@@ -81,14 +79,14 @@ export const MobileDock = () => {
                   </motion.div>
                 </NavLink>
 
-                {/* Child menu under Services */}
+                {/* Services child menu */}
                 {item.children && openServices && (
-                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-canvas neu-raised rounded-lg shadow-lg p-2 flex flex-col gap-2">
+                  <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-canvas neu-raised rounded-lg p-2 flex flex-col gap-2">
                     {item.children.map((child) => (
                       <NavLink
                         key={child.path}
                         to={child.path}
-                        className="px-4 py-2 rounded-[12px] text-sm font-body neu-button text-text-secondary hover:text-text-primary"
+                        className="px-4 py-2 rounded-[12px] text-sm font-body neu-button text-text-secondary"
                         onClick={() => setOpenServices(false)}
                       >
                         {child.label}
@@ -106,4 +104,5 @@ export const MobileDock = () => {
 };
 
 export default MobileDock;
+
 

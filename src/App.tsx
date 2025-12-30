@@ -3,19 +3,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import MobileDock from "./components/MobileDock";
+import MobileMenu from "@/components/MobileMenu";
 import DesktopCommandBar from "./components/DesktopCommandBar";
 
 // Pages
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
 import WhoWeAre from "./pages/WhoWeAre";
 import OurVision from "./pages/OurVision";
 import Expertise from "./pages/Expertise";
 import Minerals from "./pages/Minerals";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import Logistics from "./pages/Logistics";          // ✅ new page
+import Certification from "./pages/Certification";  // ✅ new page
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,10 @@ const App = () => (
 
         <DesktopCommandBar />
 
+
+        {/* ✅ Mobile dropdown menu */}
+        <MobileMenu />
+
         <main className="pb-20 md:pb-0">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -45,16 +50,15 @@ const App = () => (
             <Route path="/expertise" element={<Expertise />} />
             <Route path="/minerals" element={<Minerals />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/logistics" element={<Logistics />} />        {/* ✅ new route */}
+            <Route path="/certification" element={<Certification />} />{/* ✅ new route */}
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-
-        <MobileDock />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
 
 export default App;
-

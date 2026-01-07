@@ -1,299 +1,171 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 import DepthContainer from "@/components/DepthContainer";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const mineralData = [
+const mineralCategories = [
   {
-    type: "copper" as const,
-    name: "Copper Cathode",
-    specs: [
-      { label: "Purity", value: "99.99% Cu" },
-      { label: "Standard", value: "LME Grade A" },
-      { label: "Form", value: "Cathode Sheets" },
-    ],
-    description:
-      "Premium copper cathodes meeting London Metal Exchange Grade A specifications. Suitable for electrical manufacturing, construction, and industrial applications.",
-    images: [
-      "/images/copper1.png",
-      "/images/copper2.png",
-      "/images/copper3.png",
-      "/images/copper4.png",
-    ],
+    id: "smelting",
+    title: "Industrial Smelting",
+    subtitle: "Metallurgical excellence & refining capabilities",
+    image: "/mineral-images/goldsmelting1.png",
+    route: "smelting"
   },
   {
-    type: "coltan" as const,
-    name: "Coltan",
-    specs: [
-      { label: "Content", value: "Ta₂O₅ 30%+" },
-      { label: "Origin", value: "DRC, Rwanda" },
-      { label: "Status", value: "ITSCI Tagged" },
-    ],
-    description:
-      "Conflict-free tantalum ore sourced from certified operations. Essential for capacitors in electronics, aerospace systems, and medical devices.",
-    images: [
-      "/images/coltan1.png",
-      "/images/coltan2.png",
-      "/images/coltan3.png",
-      "/images/coltan4.png",
-    ],
+    id: "tanzanite",
+    title: "Tanzanite",
+    subtitle: "GIA Certified Gemstones - Mererani Exclusive",
+    image: "/mineral-images/tanzanite1.png",
+    route: "tanzanite"
   },
   {
-    type: "gold" as const,
-    name: "Gold",
-    specs: [
-      { label: "Purity", value: "999.9 Fine" },
-      { label: "Form", value: "Refined Bullion" },
-      { label: "Assay", value: "LBMA Standard" },
-    ],
-    description:
-      "Refined gold bullion from East African sources. Fully documented chain of custody and assay certification.",
-    images: [
-      "/images/gold1.png",
-      "/images/gold2.png",
-      "/images/gold3.png",
-      "/images/gold4.png",
-    ],
+    id: "gold-bars",
+    title: "Gold Bars",
+    subtitle: "LBMA Good Delivery • Reserve Grade",
+    image: "/mineral-images/goldbars1.png",
+    route: "gold-bars"
   },
   {
-    type: "tanzanite" as const,
-    name: "Tanzanite",
-    specs: [
-      { label: "Origin", value: "Mererani, TZ" },
-      { label: "Grading", value: "GIA Certified" },
-      { label: "Character", value: "Trichroic" },
-    ],
-    description:
-      "Rare blue-violet gemstones exclusive to Tanzania. Each stone certified with documented provenance.",
-    images: [
-      "/images/tanzanite1.png",
-      "/images/tanzanite2.png",
-      "/images/tanzanite3.png",
-      "/images/tanzanite4.png",
-    ],
+    id: "gold-nuggets",
+    title: "Gold Nuggets",
+    subtitle: "Natural Specimens • Investment Grade",
+    image: "/mineral-images/goldnuggets1.png",
+    route: "gold-nuggets"
   },
+  {
+    id: "copper-cathode",
+    title: "Copper Cathode",
+    subtitle: "LME Grade A • Electrification Infrastructure",
+    image: "/mineral-images/copper1.png",
+    route: "copper-cathold"
+  },
+  {
+    id: "coltan",
+    title: "Coltan",
+    subtitle: "Conflict-Free • Technology Enabler",
+    image: "/mineral-images/coltan1.png",
+    route: "coltan" // FIXED: Changed from "coltant" to "coltan"
+  },
+  {
+    id: "vault-services",
+    title: "Vault Services",
+    subtitle: "Sovereign-Grade Asset Protection",
+    image: "/mineral-images/vault1.png",
+    route: "vault"
+  },
+  {
+    id: "community-development",
+    title: "Community Development",
+    subtitle: "Legacy & Sustainable Investment",
+    image: "/mineral-images/communitydev1.png",
+    route: "community-development"
+  }
 ];
-
-// Define MineralCard outside so it can use useNavigate
-const MineralCard = ({
-  mineral,
-  index,
-  onRequestQuote,
-}: {
-  mineral: typeof mineralData[0];
-  index: number;
-  onRequestQuote: () => void;
-}) => {
-  const [currentImage, setCurrentImage] = useState(0);
-
-  // ✅ Auto-play logic
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % mineral.images.length);
-    }, 5000); // switch every 5 seconds
-    return () => clearInterval(interval);
-  }, [mineral.images.length]);
-
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1 * index, duration: 0.4 }}
-      whileHover={{ y: -2 }}
-    >
-      <DepthContainer depth="engraved" className="overflow-hidden shadow-permanent">
-        <div className="grid md:grid-cols-2 gap-0">
-          {/* Image Side with Switcher */}
-          <div className="relative">
-            <motion.img
-              key={currentImage}
-              src={mineral.images[currentImage]}
-              alt={`${mineral.name} image ${currentImage + 1}`}
-              className="h-64 md:h-full min-h-[280px] w-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            />
-
-            {/* Image Navigation */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {mineral.images.map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    idx === currentImage
-                      ? "bg-text-highlight shadow-permanent"
-                      : "bg-text-muted/50"
-                  }`}
-                  onClick={() => setCurrentImage(idx)}
-                />
-              ))}
-            </div>
-
-            {/* Arrow Controls */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between">
-              <button
-                onClick={() =>
-                  setCurrentImage(
-                    (prev) =>
-                      (prev - 1 + mineral.images.length) % mineral.images.length
-                  )
-                }
-                className="shadow-permanent-button w-10 h-10 rounded-[18px] flex items-center justify-center"
-              >
-                <ChevronLeft size={18} className="text-text-muted" />
-              </button>
-              <button
-                onClick={() =>
-                  setCurrentImage((prev) => (prev + 1) % mineral.images.length)
-                }
-                className="shadow-permanent-button w-10 h-10 rounded-[18px] flex items-center justify-center"
-              >
-                <ChevronRight size={18} className="text-text-muted" />
-              </button>
-            </div>
-          </div>
-
-          {/* Content Side */}
-          <div className="p-5 md:p-8 flex flex-col justify-between">
-            <div>
-              <h2 className="font-heading text-2xl md:text-3xl mb-3 md:mb-4 text-text-highlight">
-                {mineral.name}
-              </h2>
-              <p className="text-text-secondary font-body text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
-                {mineral.description}
-              </p>
-
-              {/* Specs Grid */}
-              <div className="grid grid-cols-3 gap-3 mb-4 md:mb-6">
-                {mineral.specs.map((spec) => (
-                  <div
-                    key={spec.label}
-                    className="shadow-permanent p-3 rounded-[18px] text-center"
-                  >
-                    <span className="block text-text-muted font-body text-xs uppercase tracking-wider mb-1">
-                      {spec.label}
-                    </span>
-                    <span className="block text-text-highlight font-body text-sm md:text-base">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <button
-              onClick={onRequestQuote}
-              className="shadow-permanent-button w-full py-3 md:py-4 rounded-[18px] text-text-primary font-body text-sm md:text-base transition-all duration-200"
-            >
-              Request Quote
-            </button>
-          </div>
-        </div>
-      </DepthContainer>
-    </motion.section>
-  );
-};
 
 const Minerals = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-canvas pt-20 md:pt-28 pb-12 px-4">
+    <div className="min-h-screen bg-canvas pt-16 md:pt-24 pb-12 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4">
-            Mineral Portfolio
+          <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-4 text-text-primary">
+            Premium Mineral Categories
           </h1>
-          <p className="text-text-secondary font-body text-sm md:text-base max-w-xl mx-auto">
-            Strategic commodities sourced from verified East African operations.
+          <p className="text-text-secondary font-body text-base md:text-lg max-w-2xl mx-auto">
+            Click any category to explore detailed specifications, gallery, and institutional documentation.
           </p>
         </motion.div>
 
-        {/* Mineral Cards */}
-        <div className="space-y-6 md:space-y-8">
-          {mineralData.map((mineral, index) => (
-            <MineralCard 
-              key={mineral.type} 
-              mineral={mineral} 
-              index={index}
-              onRequestQuote={() => navigate("/contact")}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+          {mineralCategories.map((category, index) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1, duration: 0.3 }}
+            >
+              <DepthContainer depth="engraved" className="
+                h-full p-5 md:p-6
+                border-2 border-border-dark/80
+                bg-gradient-to-br from-canvas-dark via-canvas to-canvas-dark
+                shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_2px_4px_rgba(255,255,255,0.05)]
+                hover:shadow-[0_12px_40px_rgba(0,0,0,0.2),inset_0_2px_4px_rgba(255,255,255,0.08)]
+                hover:translate-y-[-4px]
+                transition-all duration-300
+                group
+              ">
+                <div className="aspect-square mb-4 overflow-hidden rounded-xl">
+                  <img 
+                    src={category.image} 
+                    alt={category.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="
+                      w-full h-full object-cover
+                      group-hover:scale-110
+                      transition-transform duration-500
+                    "
+                  />
+                </div>
+                <h3 className="font-heading text-lg md:text-xl mb-2 text-text-highlight">
+                  {category.title}
+                </h3>
+                <p className="text-text-secondary font-body text-sm mb-4">
+                  {category.subtitle}
+                </p>
+                <button
+                  onClick={() => navigate(`/minerals/${category.route}`)}
+                  className="
+                    w-full py-3
+                    bg-gradient-to-br from-canvas-dark via-canvas-dark to-border-dark/80
+                    text-text-primary
+                    font-body font-medium text-sm
+                    border-2 border-border-dark
+                    rounded-xl
+                    shadow-[0_6px_24px_rgba(0,0,0,0.15),inset_0_2px_4px_rgba(255,255,255,0.05)]
+                    hover:shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_2px_4px_rgba(255,255,255,0.08)]
+                    hover:translate-y-[-1px]
+                    active:translate-y-[0px]
+                    transition-all duration-200
+                    relative
+                    overflow-hidden
+                  "
+                >
+                  <span className="relative z-10">Explore Details →</span>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-border/5 to-transparent opacity-50" />
+                </button>
+              </DepthContainer>
+            </motion.div>
           ))}
         </div>
 
-        {/* Additional Information */}
-        <motion.section
-          className="mt-8 md:mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-        >
-          <DepthContainer depth="engraved" className="p-5 md:p-8 shadow-permanent">
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              <div>
-                <h3 className="font-heading text-lg md:text-xl mb-3 text-text-highlight">
-                  Quality Assurance
-                </h3>
-                <p className="text-text-secondary font-body text-sm md:text-base leading-relaxed">
-                  All minerals undergo rigorous quality verification, including laboratory analysis, 
-                  purity testing, and certification by international standards bodies. Each shipment 
-                  includes full documentation and traceability.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="font-heading text-lg md:text-xl mb-3 text-text-highlight">
-                  Sourcing Standards
-                </h3>
-                <p className="text-text-secondary font-body text-sm md:text-base leading-relaxed">
-                  We maintain strict ethical sourcing protocols, ensuring conflict-free supply chains 
-                  and adherence to environmental regulations. Our operations support sustainable 
-                  mining practices across East Africa.
-                </p>
-              </div>
-            </div>
-          </DepthContainer>
-        </motion.section>
-
-        {/* CTA Section */}
         <motion.div
-          className="mt-8 md:mt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
+          className="mt-12 md:mt-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <DepthContainer depth="engraved" className="p-5 md:p-8 shadow-permanent">
-            <h2 className="font-heading text-xl md:text-2xl mb-3 md:mb-4">
-              Ready to Trade?
-            </h2>
-            <p className="text-text-secondary font-body text-sm md:text-base mb-4 md:mb-6 max-w-xl mx-auto">
-              Contact our trading desk for current pricing, availability, and shipment schedules.
+          <DepthContainer depth="engraved" className="
+            p-6 md:p-8
+            border-2 border-border-dark/80
+            bg-gradient-to-br from-canvas-dark via-canvas to-canvas-dark
+            shadow-[0_12px_48px_rgba(0,0,0,0.2),inset_0_2px_8px_rgba(255,255,255,0.03)]
+          ">
+            <h3 className="font-heading text-xl md:text-2xl mb-4 text-text-highlight">
+              Institutional Trading Standards
+            </h3>
+            <p className="text-text-secondary font-body text-base leading-relaxed">
+              Adonnow Trading Limited maintains compliance with LBMA, LME, OECD, and Kimberly Process certification standards. 
+              All commodities undergo rigorous verification protocols ensuring traceability, purity, and legal provenance for 
+              institutional and sovereign wealth clients globally.
             </p>
-            <div className="flex justify-center">
-              <button
-                onClick={() => navigate("/contact")}
-                className="shadow-permanent-button px-6 py-3 md:py-4 rounded-[18px] text-text-primary font-body text-sm md:text-base transition-all duration-200"
-              >
-                Get Pricing Information
-              </button>
-            </div>
           </DepthContainer>
         </motion.div>
-
-        {/* Mobile Optimization Note */}
-        <div className="mt-8 text-center lg:hidden">
-          <p className="text-text-secondary font-body text-xs">
-            Swipe images or tap arrows to navigate. All elements feature permanent raised effect.
-          </p>
-        </div>
       </div>
     </div>
   );

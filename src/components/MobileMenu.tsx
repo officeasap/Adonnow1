@@ -1,15 +1,28 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   
+  // Toggle menu function
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop event from bubbling up
+    setIsOpen(!isOpen);
+  };
+
   // Close menu when clicking outside or pressing ESC
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (isOpen && !target.closest('.mobile-menu-container')) {
+      
+      // Check if click is outside both button and menu
+      const isButtonClick = buttonRef.current?.contains(target);
+      const isMenuClick = menuRef.current?.contains(target);
+      
+      if (!isButtonClick && !isMenuClick && isOpen) {
         setIsOpen(false);
       }
     };
@@ -27,11 +40,11 @@ const MobileMenu = () => {
       document.body.style.overflow = '';
     }
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleEscKey);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscKey);
       document.body.style.overflow = '';
     };
@@ -67,14 +80,16 @@ const MobileMenu = () => {
 
       {/* Menu Container */}
       <div className="lg:hidden fixed top-4 right-4 z-50 mobile-menu-container">
-        {/* Menu Button - COMPLETELY SHADOW FREE */}
+        {/* Menu Button - FIXED CLICK HANDLER */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="bg-[#141414] border border-[rgba(249,249,245,0.1)] w-12 h-12 rounded-[18px] flex items-center justify-center hover:border-[rgba(223,212,162,0.3)] transition-colors"
+          ref={buttonRef}
+          onClick={toggleMenu}
+          className="bg-[#141414] border border-[rgba(249,249,245,0.1)] w-12 h-12 rounded-[18px] flex items-center justify-center hover:border-[rgba(223,212,162,0.3)] transition-colors active:scale-95"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           style={{
             boxShadow: 'none',
-            outline: 'none'
+            outline: 'none',
+            WebkitTapHighlightColor: 'transparent'
           }}
         >
           {isOpen ? 
@@ -83,10 +98,11 @@ const MobileMenu = () => {
           }
         </button>
         
-        {/* Menu Dropdown - COMPLETELY SHADOW FREE */}
+        {/* Menu Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              ref={menuRef}
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -95,6 +111,7 @@ const MobileMenu = () => {
               style={{
                 boxShadow: 'none'
               }}
+              onClick={(e) => e.stopPropagation()} // Prevent clicks inside menu from closing
             >
               {/* Scrollable Container */}
               <div className="max-h-[70vh] overflow-y-auto" style={{
@@ -104,7 +121,7 @@ const MobileMenu = () => {
                 <div className="p-6">
                   {/* Mobile Logo Header */}
                   <div className="mb-8 pb-6 border-b border-[rgba(249,249,245,0.1)]">
-                    {/* Logo Container - NO SHADOW */}
+                    {/* Logo Container */}
                     <div className="flex justify-center mb-4">
                       <div className="w-20 h-20 flex items-center justify-center rounded-[18px] bg-[#141414] border border-[rgba(249,249,245,0.1)] p-3"
                            style={{ boxShadow: 'none' }}>
@@ -128,7 +145,7 @@ const MobileMenu = () => {
                     </div>
                   </div>
                   
-                  {/* Menu Items - COMPLETELY SHADOW FREE */}
+                  {/* Menu Items */}
                   <nav className="flex flex-col gap-2">
                     {menuItems.map((item, index) => (
                       <motion.a
@@ -137,17 +154,18 @@ const MobileMenu = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.04, duration: 0.2 }}
-                        className="bg-[#141414] border border-[rgba(249,249,245,0.1)] hover:border-[rgba(223,212,162,0.3)] py-3.5 px-4 rounded-[12px] text-base flex items-center justify-between group transition-all duration-200"
+                        className="bg-[#141414] border border-[rgba(249,249,245,0.1)] hover:border-[rgba(223,212,162,0.3)] py-3.5 px-4 rounded-[12px] text-base flex items-center justify-between group transition-all duration-200 active:scale-98"
                         onClick={() => setIsOpen(false)}
                         style={{
                           boxShadow: 'none',
-                          textShadow: 'none'
+                          textShadow: 'none',
+                          WebkitTapHighlightColor: 'transparent'
                         }}
                       >
                         <span className="text-[#f9f9f5] group-hover:text-[#dfd4a2] transition-colors">
                           {item.label}
                         </span>
-                        {/* Simple arrow icon - NO SHADOW */}
+                        {/* Simple arrow icon */}
                         <div className="text-[rgba(249,249,245,0.4)] group-hover:text-[#dfd4a2] transition-colors"
                              style={{ filter: 'none' }}>
                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

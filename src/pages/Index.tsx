@@ -2,29 +2,26 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import DepthContainer from "@/components/DepthContainer";
-import EntryPopup from "@/components/EntryPopup";
 import { useNavigate } from "react-router-dom";
 
 const minerals = [
-  { type: "copper" as const, name: "Copper Cathode", tagline: "LME Grade A Certified" },
-  { type: "coltan" as const, name: "Coltan", tagline: "Conflict-Free Tantalum Ore" },
-  { type: "gold" as const, name: "Gold", tagline: "Refined Bullion" },
-  { type: "tanzanite" as const, name: "Tanzanite", tagline: "GIA Certified Gemstones" },
+  { type: "copper", name: "Copper Cathode", tagline: "LME Grade A Certified", image: "/mineral-images/copper1.png" },
+  { type: "coltan", name: "Coltan", tagline: "Conflict-Free Tantalum Ore", image: "/mineral-images/coltan1.png" },
+  { type: "gold", name: "Gold", tagline: "Refined Bullion", image: "/mineral-images/goldbars1.png" },
+  { type: "tanzanite", name: "Tanzanite", tagline: "GIA Certified Gemstones", image: "/mineral-images/tanzanite1.png" },
 ];
 
 const heroImages = [
-  { src: "/images/tanzanite1.png", alt: "Adonnow Trading — Tanzanite" },
-  { src: "/images/gold1.png", alt: "Adonnow Trading — Gold Bullion" },
-  { src: "/images/copper3.png", alt: "Adonnow Trading — Copper Cathodes" },
-  { src: "/images/coltan2.png", alt: "Adonnow Trading — Coltan Ore" },
+  { src: "/mineral-images/tanzanite1.png", alt: "Adonnow Trading — Tanzanite" },
+  { src: "/mineral-images/goldbars1.png", alt: "Adonnow Trading — Gold Bullion" },
+  { src: "/mineral-images/copper1.png", alt: "Adonnow Trading — Copper Cathodes" },
+  { src: "/mineral-images/coltan1.png", alt: "Adonnow Trading — Coltan Ore" },
 ];
 
 const Index = () => {
   const navigate = useNavigate();
-
   const [currentMineral, setCurrentMineral] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [popupComplete, setPopupComplete] = useState(false);
 
   useEffect(() => {
     const mineralInterval = setInterval(() => {
@@ -42,27 +39,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-canvas">
-      <EntryPopup onComplete={() => setPopupComplete(true)} />
-      
-      {/* HERO SECTION - No header here since it's global */}
-      <section className="min-h-screen flex items-center justify-center px-4 pt-20 md:pt-32 pb-12">
+      {/* HERO SECTION */}
+      <section className="min-h-[90vh] flex items-center justify-center px-4 pt-16 md:pt-24 pb-12">
         <div className="max-w-6xl mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* LEFT CONTENT */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
               className="text-center lg:text-left"
             >
-              <p className="text-text-secondary text-sm uppercase tracking-[0.3em] mb-4">
+              <p className="text-text-secondary text-sm uppercase tracking-[0.3em] mb-4 font-body">
                 Adonnow Trading Limited
               </p>
 
               <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight">
                 <span className="block text-text-highlight">East African</span>
-                <span className="block">Mineral Exports</span>
+                <span className="block text-text-primary">Mineral Exports</span>
               </h1>
 
               <p className="text-text-secondary font-body text-base md:text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
@@ -72,13 +67,13 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => navigate("/minerals")}
-                  className="shadow-permanent-button px-6 py-3 md:py-4 rounded-[18px] text-sm md:text-base"
+                  className="rounded-[18px] px-6 py-3 bg-canvas-dark text-text-primary border border-border shadow-permanent-button font-body font-medium hover:brightness-102 transition-all duration-200"
                 >
                   View Portfolio
                 </button>
                 <button
                   onClick={() => navigate("/contact")}
-                  className="shadow-permanent-button px-6 py-3 md:py-4 rounded-[18px] text-sm md:text-base"
+                  className="rounded-[18px] px-6 py-3 bg-canvas text-text-primary border-2 border-border-dark shadow-permanent font-body font-medium hover:brightness-102 transition-all duration-200"
                 >
                   Contact Trading Desk
                 </button>
@@ -87,35 +82,41 @@ const Index = () => {
 
             {/* RIGHT CONTENT */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <DepthContainer depth="engraved" className="p-5 md:p-8 shadow-permanent">
+              <DepthContainer depth="engraved" className="p-5 md:p-8">
                 {/* IMAGE SLIDER */}
                 <div className="relative mb-6">
-                  <motion.img
+                  <motion.div
                     key={currentSlide}
-                    src={heroImages[currentSlide].src}
-                    alt={heroImages[currentSlide].alt}
-                    className="w-full h-60 md:h-80 object-cover rounded-[18px]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                    className="aspect-[16/10] overflow-hidden rounded-xl"
+                  >
+                    <img
+                      src={heroImages[currentSlide].src}
+                      alt={heroImages[currentSlide].alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
 
                   <div className="absolute inset-y-0 left-2 right-2 flex justify-between items-center">
                     <button
                       onClick={() => setCurrentSlide(prev => (prev - 1 + heroImages.length) % heroImages.length)}
-                      className="shadow-permanent-button w-10 h-10 rounded-[18px] flex items-center justify-center"
+                      className="bg-canvas-dark/90 backdrop-blur-sm w-10 h-10 rounded-[18px] flex items-center justify-center shadow-permanent hover:brightness-102 transition-all"
                     >
-                      <ChevronLeft size={18} />
+                      <ChevronLeft size={18} className="text-text-primary" />
                     </button>
                     <button
                       onClick={() => setCurrentSlide(prev => (prev + 1) % heroImages.length)}
-                      className="shadow-permanent-button w-10 h-10 rounded-[18px] flex items-center justify-center"
+                      className="bg-canvas-dark/90 backdrop-blur-sm w-10 h-10 rounded-[18px] flex items-center justify-center shadow-permanent hover:brightness-102 transition-all"
                     >
-                      <ChevronRight size={18} />
+                      <ChevronRight size={18} className="text-text-primary" />
                     </button>
                   </div>
 
@@ -125,9 +126,9 @@ const Index = () => {
                       <button
                         key={idx}
                         onClick={() => setCurrentSlide(idx)}
-                        className={`w-2 h-2 rounded-full transition-all ${
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           idx === currentSlide
-                            ? "bg-text-highlight shadow-permanent-button w-4"
+                            ? "bg-text-highlight w-4"
                             : "bg-text-muted/50"
                         }`}
                       />
@@ -151,15 +152,18 @@ const Index = () => {
                     <button
                       key={m.type}
                       onClick={() => setCurrentMineral(i)}
-                      className={`p-3 md:p-4 rounded-[18px] text-center transition-all ${
-                        i === currentMineral
-                          ? "shadow-permanent bg-text-highlight/10"
-                          : "shadow-permanent-button"
-                      }`}
+                      className={`
+                        p-3 md:p-4 rounded-[18px] text-center transition-all duration-200
+                        ${i === currentMineral
+                          ? 'bg-canvas-dark border-2 border-border shadow-permanent'
+                          : 'bg-canvas border border-border hover:bg-canvas-dark'
+                        }
+                      `}
                     >
-                      <span className={`text-xs md:text-sm uppercase tracking-wider ${
-                        i === currentMineral ? "text-text-highlight" : "text-text-muted"
-                      }`}>
+                      <span className={`
+                        text-xs md:text-sm uppercase tracking-wider font-medium
+                        ${i === currentMineral ? 'text-text-highlight' : 'text-text-secondary'}
+                      `}>
                         {m.type}
                       </span>
                     </button>
@@ -181,7 +185,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-8 md:mb-12"
           >
-            <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl mb-4">
+            <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl mb-4 text-text-primary">
               Why Choose Adonnow
             </h2>
             <p className="text-text-secondary font-body text-base md:text-lg max-w-2xl mx-auto">
@@ -203,7 +207,7 @@ const Index = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <DepthContainer depth="engraved" className="p-5 md:p-6 shadow-permanent h-full">
+                <DepthContainer depth="raised" className="p-5 md:p-6 h-full">
                   <h3 className="font-heading text-lg md:text-xl mb-3 text-text-highlight">
                     {item.title}
                   </h3>
@@ -220,8 +224,8 @@ const Index = () => {
       {/* CTA SECTION */}
       <section className="py-12 md:py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <DepthContainer depth="engraved" className="p-5 md:p-8 shadow-permanent text-center">
-            <h2 className="font-heading text-2xl md:text-3xl mb-4">
+          <DepthContainer depth="engraved" className="p-5 md:p-8 text-center">
+            <h2 className="font-heading text-2xl md:text-3xl mb-4 text-text-primary">
               Begin Trading Today
             </h2>
             <p className="text-text-secondary font-body text-base md:text-lg mb-6 max-w-xl mx-auto">
@@ -230,13 +234,13 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate("/minerals")}
-                className="shadow-permanent-button px-6 py-3 md:py-4 rounded-[18px] text-sm md:text-base"
+                className="rounded-[18px] px-6 py-3 bg-canvas-dark text-text-primary border border-border shadow-permanent-button font-body font-medium hover:brightness-102 transition-all duration-200 min-w-[200px]"
               >
                 View Available Minerals
               </button>
               <button
                 onClick={() => navigate("/contact")}
-                className="shadow-permanent-button px-6 py-3 md:py-4 rounded-[18px] text-sm md:text-base"
+                className="rounded-[18px] px-6 py-3 bg-canvas text-text-primary border-2 border-border-dark shadow-permanent font-body font-medium hover:brightness-102 transition-all duration-200 min-w-[200px]"
               >
                 Send Inquiry
               </button>
@@ -244,29 +248,6 @@ const Index = () => {
           </DepthContainer>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="py-8 text-center px-4 border-t border-border/20">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-4">
-              {/* Company Logo in footer */}
-              <img
-                src="/images/LogoAdonnowOfficial.png"
-                alt="Adonnow Trading Limited"
-                className="h-8 w-auto"
-              />
-              <p className="text-text-secondary text-sm">
-                Sovereign mineral trading since 2024
-              </p>
-            </div>
-            
-            <div className="text-text-muted text-sm">
-              © {new Date().getFullYear()} Adonnow Trading Limited — All rights reserved
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

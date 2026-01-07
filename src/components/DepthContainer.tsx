@@ -1,52 +1,43 @@
-import { motion } from "framer-motion";
-import { forwardRef, ReactNode } from "react";
-import { cn } from "@/lib/utils";
-
-type DepthState = "engraved" | "raised" | "pressed";
+// @/components/DepthContainer.tsx
+import { ReactNode } from 'react';
 
 interface DepthContainerProps {
-  depth?: DepthState;
-  animate?: boolean;
+  children: ReactNode;
   className?: string;
-  children?: ReactNode;
-  onClick?: () => void;
+  depth?: 'engraved' | 'raised' | 'flat';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
-const depthStyles: Record<DepthState, string> = {
-  engraved: "depth-engraved",
-  raised: "depth-raised",
-  pressed: "depth-pressed",
+const DepthContainer: React.FC<DepthContainerProps> = ({ 
+  children, 
+  className = '', 
+  depth = 'raised',
+  padding = 'md'
+}) => {
+  const depthClasses = {
+    engraved: 'shadow-permanent-engraved border-2 border-border-dark',
+    raised: 'shadow-permanent border border-border',
+    flat: ''
+  };
+  
+  const paddingClasses = {
+    none: '',
+    sm: 'p-4 md:p-5',
+    md: 'p-5 md:p-6',
+    lg: 'p-6 md:p-8'
+  };
+  
+  return (
+    <div className={`
+      rounded-xl 
+      bg-canvas 
+      ${depthClasses[depth]} 
+      ${paddingClasses[padding]} 
+      ${className}
+    `}>
+      {children}
+    </div>
+  );
 };
-
-export const DepthContainer = forwardRef<HTMLDivElement, DepthContainerProps>(
-  ({ depth = "engraved", animate = true, className, children, onClick }, ref) => {
-    if (animate) {
-      return (
-        <motion.div
-          ref={ref}
-          className={cn(depthStyles[depth], "rounded-[18px]", className)}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          onClick={onClick}
-        >
-          {children}
-        </motion.div>
-      );
-    }
-
-    return (
-      <div
-        ref={ref}
-        className={cn(depthStyles[depth], "rounded-[18px]", className)}
-        onClick={onClick}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-
-DepthContainer.displayName = "DepthContainer";
 
 export default DepthContainer;

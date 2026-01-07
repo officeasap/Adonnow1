@@ -214,9 +214,11 @@ const Contact = () => {
                     info@adonnow.com
                   </a><br />
                   <a href="tel:+254707513272" className="text-text-highlight hover:text-text-primary transition-colors">
-                    +254 707 513 272
+                    +254 707 513 272 <br/>
+                    +255 772 832 777
                   </a>
                 </p>
+
               </div>
             </div>
 

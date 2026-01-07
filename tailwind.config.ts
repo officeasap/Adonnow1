@@ -23,33 +23,23 @@ export default {
         body: ["system-ui", "-apple-system", "'Helvetica Neue'", "Arial", "sans-serif"],
       },
       colors: {
-        // Canvas
         canvas: "hsl(var(--canvas))",
-
-        // Depth States
         "depth-engraved": "hsl(var(--depth-engraved))",
         "depth-raised": "hsl(var(--depth-raised))",
         "depth-pressed": "hsl(var(--depth-pressed))",
-
-        // Semantic colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-
-        // ✅ Text colors (fixed globally)
-        "text-primary": "#d4ccb5", // premium beige shade
+        "text-primary": "#d4ccb5",
         "text-secondary": "hsl(var(--text-secondary))",
         "text-muted": "hsl(var(--text-muted))",
         "text-highlight": "hsl(var(--text-highlight))",
-
-        // ✅ Primary palette (fixed globally)
         primary: {
-          DEFAULT: "#d4ccb5",       // brand color
-          foreground: "#000000",    // text color on primary buttons
+          DEFAULT: "#d4ccb5",
+          foreground: "#000000",
         },
-
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -112,12 +102,20 @@ export default {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
+        // ✅ Shake ritual for logo
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "25%": { transform: "translateX(-4px)" },
+          "75%": { transform: "translateX(4px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "scale-in": "scale-in 0.2s ease-out",
+        // ✅ Map shake animation
+        shake: "shake 0.5s ease-in-out infinite",
       },
     },
   },

@@ -85,13 +85,16 @@
     background: #121212 !important;
   }
 
-  /* LOGO STYLING - FIXED 18px RADIUS */
-  .adonnow-logo {
-    border-radius: 18px !important;
-    overflow: hidden;
-    box-shadow: var(--shadow-permanent);
-    border: 1px solid rgba(223, 212, 162, 0.1);
-  }
+/* LOGO STYLING - FIXED SIZE + RADIUS */
+.adonnow-logo {
+  width: 160px;          /* set logo width */
+  height: auto;          /* keep proportions */
+  border-radius: 18px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-permanent);
+  border: 1px solid rgba(223, 212, 162, 0.1);
+}
+
 
   /* PERMANENT SHADOW CLASSES */
   .shadow-permanent {

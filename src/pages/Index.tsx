@@ -5,37 +5,142 @@ import DepthContainer from "@/components/DepthContainer";
 import { useNavigate } from "react-router-dom";
 
 const minerals = [
-  { type: "copper", name: "Copper Cathode", tagline: "LME Grade A Certified", image: "/mineral-images/copper1.png" },
-  { type: "coltan", name: "Coltan", tagline: "Conflict-Free Tantalum Ore", image: "/mineral-images/coltan1.png" },
-  { type: "gold", name: "Gold", tagline: "Refined Bullion", image: "/mineral-images/goldbars1.png" },
-  { type: "tanzanite", name: "Tanzanite", tagline: "GIA Certified Gemstones", image: "/mineral-images/tanzanite1.png" },
+  { 
+    type: "copper", 
+    name: "Copper Cathode", 
+    tagline: "LME Grade A Certified", 
+    image: "/mineral-images/copper1.png",
+    heroImage: "/mineral-images/copper1.png"
+  },
+  { 
+    type: "coltan", 
+    name: "Coltan", 
+    tagline: "Conflict-Free Tantalum Ore", 
+    image: "/mineral-images/coltan1.png",
+    heroImage: "/mineral-images/coltan1.png"
+  },
+  { 
+    type: "gold", 
+    name: "Gold", 
+    tagline: "Refined Bullion", 
+    image: "/mineral-images/goldbars1.png",
+    heroImage: "/mineral-images/goldbars1.png"
+  },
+  { 
+    type: "tanzanite", 
+    name: "Tanzanite", 
+    tagline: "GIA Certified Gemstones", 
+    image: "/mineral-images/tanzanite1.png",
+    heroImage: "/mineral-images/tanzanite1.png"
+  },
 ];
 
 const heroImages = [
-  { src: "/mineral-images/tanzanite1.png", alt: "Adonnow Trading — Tanzanite" },
-  { src: "/mineral-images/goldbars1.png", alt: "Adonnow Trading — Gold Bullion" },
-  { src: "/mineral-images/copper1.png", alt: "Adonnow Trading — Copper Cathodes" },
-  { src: "/mineral-images/coltan1.png", alt: "Adonnow Trading — Coltan Ore" },
+  { src: "/mineral-images/tanzanite1.png", alt: "Adonnow Trading — Tanzanite", type: "tanzanite" },
+  { src: "/mineral-images/goldbars1.png", alt: "Adonnow Trading — Gold Bullion", type: "gold" },
+  { src: "/mineral-images/copper1.png", alt: "Adonnow Trading — Copper Cathodes", type: "copper" },
+  { src: "/mineral-images/coltan1.png", alt: "Adonnow Trading — Coltan Ore", type: "coltan" },
 ];
 
 const Index = () => {
   const navigate = useNavigate();
-  const [currentMineral, setCurrentMineral] = useState(0);
+  const [currentMineralIndex, setCurrentMineralIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
 
-  useEffect(() => {
-    const mineralInterval = setInterval(() => {
-      setCurrentMineral((prev) => (prev + 1) % minerals.length);
-    }, 5000);
-    return () => clearInterval(mineralInterval);
-  }, []);
+  // Get current mineral based on index
+  const currentMineral = minerals[currentMineralIndex];
+  
+  // Find the slide index that matches the current mineral type
+  const getSlideIndexForMineral = (mineralType: string) => {
+    return heroImages.findIndex(img => img.type === mineralType);
+  };
 
+  // Handle mineral button click
+  const handleMineralClick = (index: number) => {
+    const mineralType = minerals[index].type;
+    const slideIndex = getSlideIndexForMineral(mineralType);
+    
+    if (slideIndex !== -1) {
+      setCurrentMineralIndex(index);
+      setCurrentSlide(slideIndex);
+      setIsAutoSliding(false); // Pause auto-slide when user manually selects
+      
+      // Resume auto-slide after 8 seconds
+      setTimeout(() => {
+        setIsAutoSliding(true);
+      }, 8000);
+    }
+  };
+
+  // Handle slide navigation
+  const handleSlideChange = (direction: 'next' | 'prev') => {
+    setIsAutoSliding(false);
+    
+    if (direction === 'next') {
+      const newSlide = (currentSlide + 1) % heroImages.length;
+      setCurrentSlide(newSlide);
+      
+      // Find the mineral that matches this slide
+      const currentSlideType = heroImages[newSlide].type;
+      const mineralIndex = minerals.findIndex(m => m.type === currentSlideType);
+      if (mineralIndex !== -1) {
+        setCurrentMineralIndex(mineralIndex);
+      }
+    } else {
+      const newSlide = (currentSlide - 1 + heroImages.length) % heroImages.length;
+      setCurrentSlide(newSlide);
+      
+      // Find the mineral that matches this slide
+      const currentSlideType = heroImages[newSlide].type;
+      const mineralIndex = minerals.findIndex(m => m.type === currentSlideType);
+      if (mineralIndex !== -1) {
+        setCurrentMineralIndex(mineralIndex);
+      }
+    }
+    
+    // Resume auto-slide after 8 seconds
+    setTimeout(() => {
+      setIsAutoSliding(true);
+    }, 8000);
+  };
+
+  // Handle direct slide indicator click
+  const handleSlideIndicatorClick = (index: number) => {
+    setIsAutoSliding(false);
+    setCurrentSlide(index);
+    
+    // Find the mineral that matches this slide
+    const currentSlideType = heroImages[index].type;
+    const mineralIndex = minerals.findIndex(m => m.type === currentSlideType);
+    if (mineralIndex !== -1) {
+      setCurrentMineralIndex(mineralIndex);
+    }
+    
+    // Resume auto-slide after 8 seconds
+    setTimeout(() => {
+      setIsAutoSliding(true);
+    }, 8000);
+  };
+
+  // Auto-slide effect
   useEffect(() => {
+    if (!isAutoSliding) return;
+    
     const slideInterval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+      const newSlide = (currentSlide + 1) % heroImages.length;
+      setCurrentSlide(newSlide);
+      
+      // Update mineral to match the slide
+      const currentSlideType = heroImages[newSlide].type;
+      const mineralIndex = minerals.findIndex(m => m.type === currentSlideType);
+      if (mineralIndex !== -1) {
+        setCurrentMineralIndex(mineralIndex);
+      }
     }, 5000);
+    
     return () => clearInterval(slideInterval);
-  }, []);
+  }, [currentSlide, isAutoSliding]);
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -67,15 +172,19 @@ const Index = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => navigate("/minerals")}
-                  className="rounded-[18px] px-6 py-3 bg-canvas-dark text-text-primary border border-border shadow-permanent-button font-body font-medium hover:brightness-102 transition-all duration-200"
+                  className="mobile-menu-btn active"
                 >
-                  View Portfolio
+                  <span className="text-text-highlight drop-shadow-[0_0_6px_rgba(223,212,162,0.4)]">
+                    View Portfolio
+                  </span>
                 </button>
                 <button
                   onClick={() => navigate("/contact")}
-                  className="rounded-[18px] px-6 py-3 bg-canvas text-text-primary border-2 border-border-dark shadow-permanent font-body font-medium hover:brightness-102 transition-all duration-200"
+                  className="mobile-menu-btn"
                 >
-                  Contact Trading Desk
+                  <span className="text-text-primary drop-shadow-[0_0_4px_rgba(249,249,245,0.3)]">
+                    Contact Trading Desk
+                  </span>
                 </button>
               </div>
             </motion.div>
@@ -101,22 +210,22 @@ const Index = () => {
                       alt={heroImages[currentSlide].alt}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover premium-image"
                     />
                   </motion.div>
 
                   <div className="absolute inset-y-0 left-2 right-2 flex justify-between items-center">
                     <button
-                      onClick={() => setCurrentSlide(prev => (prev - 1 + heroImages.length) % heroImages.length)}
+                      onClick={() => handleSlideChange('prev')}
                       className="bg-canvas-dark/90 backdrop-blur-sm w-10 h-10 rounded-[18px] flex items-center justify-center shadow-permanent hover:brightness-102 transition-all"
                     >
-                      <ChevronLeft size={18} className="text-text-primary" />
+                      <ChevronLeft size={18} className="text-text-highlight drop-shadow-[0_0_6px_rgba(223,212,162,0.3)]" />
                     </button>
                     <button
-                      onClick={() => setCurrentSlide(prev => (prev + 1) % heroImages.length)}
+                      onClick={() => handleSlideChange('next')}
                       className="bg-canvas-dark/90 backdrop-blur-sm w-10 h-10 rounded-[18px] flex items-center justify-center shadow-permanent hover:brightness-102 transition-all"
                     >
-                      <ChevronRight size={18} className="text-text-primary" />
+                      <ChevronRight size={18} className="text-text-highlight drop-shadow-[0_0_6px_rgba(223,212,162,0.3)]" />
                     </button>
                   </div>
 
@@ -125,10 +234,10 @@ const Index = () => {
                     {heroImages.map((_, idx) => (
                       <button
                         key={idx}
-                        onClick={() => setCurrentSlide(idx)}
+                        onClick={() => handleSlideIndicatorClick(idx)}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           idx === currentSlide
-                            ? "bg-text-highlight w-4"
+                            ? "bg-text-highlight w-4 drop-shadow-[0_0_6px_rgba(223,212,162,0.4)]"
                             : "bg-text-muted/50"
                         }`}
                       />
@@ -138,11 +247,11 @@ const Index = () => {
 
                 {/* MINERAL INFO */}
                 <div className="mb-6">
-                  <h3 className="font-heading text-xl md:text-2xl mb-2 text-text-highlight">
-                    {minerals[currentMineral].name}
+                  <h3 className="font-heading text-xl md:text-2xl mb-2 text-text-highlight drop-shadow-[0_0_6px_rgba(223,212,162,0.2)]">
+                    {currentMineral.name}
                   </h3>
                   <p className="text-text-secondary font-body text-sm md:text-base">
-                    {minerals[currentMineral].tagline}
+                    {currentMineral.tagline}
                   </p>
                 </div>
 
@@ -151,18 +260,21 @@ const Index = () => {
                   {minerals.map((m, i) => (
                     <button
                       key={m.type}
-                      onClick={() => setCurrentMineral(i)}
+                      onClick={() => handleMineralClick(i)}
                       className={`
-                        p-3 md:p-4 rounded-[18px] text-center transition-all duration-200
-                        ${i === currentMineral
-                          ? 'bg-canvas-dark border-2 border-border shadow-permanent'
-                          : 'bg-canvas border border-border hover:bg-canvas-dark'
+                        p-3 md:p-4 rounded-[18px] text-center transition-all duration-200 mobile-menu-btn
+                        ${i === currentMineralIndex
+                          ? 'active shadow-[0_0_15px_rgba(223,212,162,0.2)]'
+                          : ''
                         }
                       `}
                     >
                       <span className={`
                         text-xs md:text-sm uppercase tracking-wider font-medium
-                        ${i === currentMineral ? 'text-text-highlight' : 'text-text-secondary'}
+                        ${i === currentMineralIndex 
+                          ? 'text-text-highlight drop-shadow-[0_0_8px_rgba(223,212,162,0.5)]' 
+                          : 'text-text-secondary'
+                        }
                       `}>
                         {m.type}
                       </span>
@@ -208,7 +320,7 @@ const Index = () => {
                 viewport={{ once: true }}
               >
                 <DepthContainer depth="raised" className="p-5 md:p-6 h-full">
-                  <h3 className="font-heading text-lg md:text-xl mb-3 text-text-highlight">
+                  <h3 className="font-heading text-lg md:text-xl mb-3 text-text-highlight drop-shadow-[0_0_4px_rgba(223,212,162,0.2)]">
                     {item.title}
                   </h3>
                   <p className="text-text-secondary font-body text-sm md:text-base">
@@ -234,15 +346,19 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate("/minerals")}
-                className="rounded-[18px] px-6 py-3 bg-canvas-dark text-text-primary border border-border shadow-permanent-button font-body font-medium hover:brightness-102 transition-all duration-200 min-w-[200px]"
+                className="mobile-menu-btn active min-w-[200px] shadow-[0_0_20px_rgba(223,212,162,0.3)]"
               >
-                View Available Minerals
+                <span className="text-text-highlight drop-shadow-[0_0_8px_rgba(223,212,162,0.5)]">
+                  View Available Minerals
+                </span>
               </button>
               <button
                 onClick={() => navigate("/contact")}
-                className="rounded-[18px] px-6 py-3 bg-canvas text-text-primary border-2 border-border-dark shadow-permanent font-body font-medium hover:brightness-102 transition-all duration-200 min-w-[200px]"
+                className="mobile-menu-btn min-w-[200px]"
               >
-                Send Inquiry
+                <span className="text-text-primary drop-shadow-[0_0_4px_rgba(249,249,245,0.3)]">
+                  Send Inquiry
+                </span>
               </button>
             </div>
           </DepthContainer>

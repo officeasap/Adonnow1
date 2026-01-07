@@ -49,7 +49,7 @@ const App = () => (
             <img
               src="/images/LogoAdonnowOfficial.png"
               alt="Adonnow Trading Limited"
-              className="h-7 w-auto object-contain"
+              className="h-12 w-auto object-contain"
             />
           </div>
         </div>

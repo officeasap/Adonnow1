@@ -14,7 +14,7 @@ const mineralCategories = [
     id: "tanzanite",
     title: "Tanzanite",
     subtitle: "GIA Certified Gemstones - Mererani Exclusive",
-    image: "/mineral-images/tanzanite1.png",
+    image: "/mineral-images/tanzanite2.png",
     route: "tanzanite"
   },
   {

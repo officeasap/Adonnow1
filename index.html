@@ -5,31 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Adonnow Limited Branding -->
-    <title>Adonnow Trading Limited</title>
-    <meta name="description" content="Adonnow Trading Limited Official Application" />
+    <title>Adonnow Trading Limited | Professional Trading Platform</title>
+    <meta name="description" content="Adonnow Trading Limited - Official institutional-grade trading platform with 24/7 Adonnow Trading Desk support" />
     <meta name="author" content="Adonnow Trading Limited" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="trading, investment, finance, Adonnow, trading desk, professional trading" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#000000" />
 
     <!-- Open Graph Meta -->
-    <meta property="og:title" content="Adonnow Trading Limited" />
-    <meta property="og:description" content="Adonnow Trading Limited Official Application" />
+    <meta property="og:title" content="Adonnow Trading Limited | Professional Trading Platform" />
+    <meta property="og:description" content="Institutional-grade trading with 24/7 Adonnow Trading Desk support. Direct human assistance for all transactions." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adonnow.com" />
     <meta property="og:image" content="/images/LogoAdonnowOfficial.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Adonnow Trading Limited" />
 
     <!-- Twitter Meta -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Adonnow" />
+    <meta name="twitter:site" content="@AdonnowTrading" />
+    <meta name="twitter:creator" content="@AdonnowTrading" />
+    <meta name="twitter:title" content="Adonnow Trading Limited" />
+    <meta name="twitter:description" content="Professional trading platform with 24/7 Adonnow Trading Desk support" />
     <meta name="twitter:image" content="/images/LogoAdonnowOfficial.png" />
 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- iOS PWA Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Adonnow Trading" />
+    
+    <!-- Windows PWA Meta -->
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    
+    <!-- Adonnow Sophistication Styles -->
+    <link rel="stylesheet" href="/styles/adonnow-sophistication.css" />
+    
+    <!-- Preconnect to important origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/images/playStore1.png" as="image" />
+    <link rel="preload" href="/images/whatsapp-icon.png" as="image" />
+    
+    <!-- Critical CSS for initial render -->
+    <style>
+      /* Critical CSS for immediate visual feedback */
+      #whatsapp-chat {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #000000, #1a1a2e);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        animation: fadeIn 1s ease-out 0.5s both;
+      }
+      
+      .download-banner {
+        display: inline-block;
+        animation: fadeInUp 0.8s ease-out 0.3s both;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- WhatsApp Chat Button - Adonnow Trading Desk -->
+    <a href="#" 
+       id="whatsapp-chat" 
+       target="_blank"
+       aria-label="Chat with Adonnow Trading Desk"
+       style="display: none;"> <!-- Initially hidden, shown by JS -->
+      <img src="/images/whatsapp-icon.png" 
+           alt="Adonnow Trading Desk"
+           width="35"
+           height="35">
+    </a>
+    
+    <!-- Adonnow Installer Script -->
+    <script src="/js/adonnow-installer.js" defer></script>
+    
+    <!-- Main Application Script -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- No-JS Fallback -->
+    <noscript>
+      <style>
+        #root { display: none; }
+        .nojs-message {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: #000;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 20px;
+          z-index: 10000;
+        }
+      </style>
+      <div class="nojs-message">
+        <div>
+          <h2>JavaScript Required</h2>
+          <p>Adonnow Trading Limited requires JavaScript to function properly.</p>
+          <p>Please enable JavaScript in your browser settings or contact our Adonnow Trading Desk for assistance.</p>
+        </div>
+      </div>
+    </noscript>
   </body>
 </html>

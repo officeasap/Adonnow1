@@ -178,7 +178,8 @@ const Contact = () => {
                   Adonnow Trading Limited<br />
                   Kilimani, Nairobi KENYA<br />
                   East Africa Regional Office<br />
-                  Dar es Salaam, TANZANIA
+                  Dar es Salaam, TANZANIA<br/>
+                  Lubumbashi Office, DRC-CONGO
                 </p>
               </div>
 
@@ -215,7 +216,8 @@ const Contact = () => {
                   </a><br />
                   <a href="tel:+254707513272" className="text-text-highlight hover:text-text-primary transition-colors">
                     +254 707 513 272 <br/>
-                    +255 772 832 777
+                    +255 772 832 777<br/>
+                    +243 987 302 907
                   </a>
                 </p>
 
